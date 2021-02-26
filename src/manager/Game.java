@@ -23,9 +23,9 @@ public class Game {
     private void startGame() {
         controller();
         if (winGame) {
-            cli.output.setText("\n\n ******************** VITÓRIA ******************** ");
+            cli.setText("\n\n ******************** VITÓRIA ******************** ");
         } else {
-            cli.output.setText("\n\n ******************** DERROTA ******************** ");
+            cli.setText("\n\n ******************** DERROTA ******************** ");
         }
     }
 
