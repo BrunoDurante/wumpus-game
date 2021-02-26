@@ -1,22 +1,20 @@
-package br.fsa.wumpus.kernel;
+package kernel;
 
 import java.util.*;
 
-import br.fsa.wumpus.interfaces.WumpusGame;
+public class Kernel {
 
-public class Kernel implements WumpusGame {
-
-	public static final int EAST = 1;
-	public static final int SOUTH = 2;
-	public static final int WEST = 3;
-	public static final int NORTH = 0;
-	public static final int J = 1 << 0; // Jogador
-	public static final int G = 1 << 1; // Gold
-	public static final int W = 1 << 2; // Wumpus
-	public static final int P = 1 << 3; // Pit
-	public static final int B = 1 << 4; // Brisa
-	public static final int F = 1 << 5; // Fedor
-	public static final int C = 1 << 6; // Cintilância
+	public final int EAST = 1;
+	public final int SOUTH = 2;
+	public final int WEST = 3;
+	public final int NORTH = 0;
+	public final int J = 1 << 0; // Jogador
+	public final int G = 1 << 1; // Gold
+	public final int W = 1 << 2; // Wumpus
+	public final int P = 1 << 3; // Pit
+	public final int B = 1 << 4; // Brisa
+	public final int F = 1 << 5; // Fedor
+	public final int C = 1 << 6; // Cintilância
 
 	public Random random;
 	private int[][] cave;
@@ -36,7 +34,7 @@ public class Kernel implements WumpusGame {
 		newGame();
 	}
 
-	public void newGame() {
+	private void newGame() {
 		cave[3][0] |= J;
 		startBoard();
 	}
@@ -80,36 +78,34 @@ public class Kernel implements WumpusGame {
 		int x = 0;
 		int y = 0;
 		while (count <= 3) {
-			x = 0;
-			y = 0;
 			do {
 				x = random.nextInt(4);
 				y = random.nextInt(4);
-			} while (x >= 2 && y < 2 || (x < 2 && y >= 2) || hasGold(x, y) || hasWumpus(x, y) || hasPit(x, y) || checkAroundGold(x, y));
-			
+			} while (x >= 2 && y < 2 || (x < 2 && y >= 2) || hasGold(x, y) || hasWumpus(x, y) || hasPit(x, y)
+					|| checkAroundGold(x, y));
+
 			cave[x][y] |= P;
 			System.out.println("P=" + P + "; cave[" + x + "][" + y + "] |= P");
 			putSensors(x, y, B);
 			count++;
 		}
 	}
-	
-	
-	//Método para não bloquear Gold
+
+	// Método para não bloquear Gold
 	private boolean checkAroundGold(int x, int y) {
 		int xG = localGold[0];
 		int yG = localGold[1];
 		int countElement = 0;
 		int countCelDisp = 0;
-		
+
 		// left
 		yG--;
 		if (yG >= 0 && yG < 4) {
-			countCelDisp ++;
-			if(hasPit(x, yG)) {
+			countCelDisp++;
+			if (hasPit(x, yG)) {
 				countElement++;
 			}
-			if(hasWumpus(x, yG)) {
+			if (hasWumpus(x, yG)) {
 				countElement++;
 			}
 		}
@@ -117,12 +113,12 @@ public class Kernel implements WumpusGame {
 
 		// right
 		yG++;
-		if (yG >= 0 && yG< 4) {
-			countCelDisp ++;
-			if(hasPit(x, yG)) {
+		if (yG >= 0 && yG < 4) {
+			countCelDisp++;
+			if (hasPit(x, yG)) {
 				countElement++;
 			}
-			if(hasWumpus(x, yG)) {
+			if (hasWumpus(x, yG)) {
 				countElement++;
 			}
 		}
@@ -131,11 +127,11 @@ public class Kernel implements WumpusGame {
 		// bottom
 		xG++;
 		if (xG >= 0 && xG < 4) {
-			countCelDisp ++;
-			if(hasPit(xG, y)) {
+			countCelDisp++;
+			if (hasPit(xG, y)) {
 				countElement++;
 			}
-			if(hasWumpus(xG, y)) {
+			if (hasWumpus(xG, y)) {
 				countElement++;
 			}
 		}
@@ -144,25 +140,24 @@ public class Kernel implements WumpusGame {
 		// top
 		xG--;
 		if (xG >= 0 && xG < 4) {
-			countCelDisp ++;
-			if(hasPit(xG, y)) {
+			countCelDisp++;
+			if (hasPit(xG, y)) {
 				countElement++;
 			}
-			if(hasWumpus(xG, y)) {
+			if (hasWumpus(xG, y)) {
 				countElement++;
 			}
 		}
 		xG++;
-		
-		if((countElement + 1) >= countCelDisp) {
+
+		if ((countElement + 1) >= countCelDisp) {
 			return true;
 		} else {
-			return false;	
+			return false;
 		}
-		
+
 	}
-	
-	
+
 	private void putJogador(int x, int y) {
 		cave[x][y] |= J;
 	}
@@ -194,7 +189,6 @@ public class Kernel implements WumpusGame {
 		if (x >= 0 && x < 4) {
 			cave[x][y] |= CONST;
 		}
-		x++;
 
 	}
 
@@ -209,7 +203,7 @@ public class Kernel implements WumpusGame {
 	}
 
 	private boolean onTarget(int dir) {
-		int[] pos = getPlayerPos();
+		int[] pos = getPlayerPosition();
 		int x = pos[0];
 		int y = pos[1];
 		boolean onTarget = false;
@@ -265,17 +259,15 @@ public class Kernel implements WumpusGame {
 		return onTarget;
 	}
 
-	public int[] getPlayerPos() {
+	public int[] getPlayerPosition() {
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
 				if ((cave[i][j] & J) == J) {
-					int[] r = new int[] { i, j };
-					return r;
+					return new int[] { i, j };
 				}
 			}
 		}
-		int[] r = new int[] { -1, -1 };
-		return r;
+		return new int[] { -1, -1 };
 	}
 
 	public int[][] getCave() {
@@ -286,7 +278,7 @@ public class Kernel implements WumpusGame {
 		return dir;
 	}
 
-	@Override
+
 	public void turnL() {
 		dir--;
 		if (dir < 0) {
@@ -294,13 +286,13 @@ public class Kernel implements WumpusGame {
 		}
 	}
 
-	@Override
+
 	public void turnR() {
 		dir = ++dir % 4;
 	}
 
 	public String walk() {
-		int[] pos = getPlayerPos();
+		int[] pos = getPlayerPosition();
 		int x = pos[0];
 		int y = pos[1];
 		int xDestino = 0;
@@ -387,12 +379,6 @@ public class Kernel implements WumpusGame {
 
 	public boolean hasPit(int x, int y) {
 		return (cave[x][y] & P) == P;
-	}
-
-	@Override
-	public boolean shoot() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

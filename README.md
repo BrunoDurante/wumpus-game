@@ -1,3 +1,0 @@
-# wumpus-game
-
-Refatorando código e repositório...
