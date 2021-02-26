@@ -72,7 +72,6 @@ public class Check {
     public static Boolean hasPit(int x, int y) {
         boolean hasPit = Game.kernel.hasPit(x, y);
         if (hasPit) {
-            Game.setEndGame(false);
             return true;
         }
         return false;

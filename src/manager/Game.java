@@ -9,8 +9,8 @@ public class Game {
     public static Kernel kernel;
     public CommandLine cli;
 
-    private static boolean gamingOn;
-    private static boolean winGame;
+    public boolean gamingOn;
+    public boolean winGame;
 
     public void newGame() {
         cli = new CommandLine();
@@ -37,7 +37,6 @@ public class Game {
     }
 
     private void checkEndGame(Boolean winner) {
-
         if (winner) {
             gamingOn = false;
             winGame = true;
