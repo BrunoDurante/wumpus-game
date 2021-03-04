@@ -16,9 +16,8 @@ public class CommandLine {
         output = new Output();
     }
 
-    //TODO ajustar
     public String getCommand() {
-        System.out.print("Action: ");
+        System.out.print("\n: ");
         return sc.next();
     }
 
@@ -39,15 +38,16 @@ public class CommandLine {
                 setBoard("Turned right.");
                 break;
             }
-            case "SH":{
+            case "SHOOT":{
                 if(action.shoot()){
-                    output.setText("\n~~~ Arrow Shot.... YEAH!!! You hit Wumpus !!!!");
+                    setText("\n~~~ Arrow Shot.... YEAH!!! You hit Wumpus !!!!");
                 }else {
-                    output.setText("\n~~~ Arrow Shot.... You Missed !!! ");
+                    setText("\n~~~ Arrow Shot.... You Missed !!! ");
                 }
                 break;
             }
             default:
+                setText("\nUnknown command, please type again.");
                 break;
         }
     }

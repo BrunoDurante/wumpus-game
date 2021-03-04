@@ -41,7 +41,7 @@ public class Check {
     public static String hasSensors(int x, int y) {
         String[] vectSensor = Game.kernel.hasSensor(x, y);
         int i = 0;
-        String status = "\n";
+        String status = "";
         while (i <= 2) {
             switch (vectSensor[i]) {
                 case "B": {

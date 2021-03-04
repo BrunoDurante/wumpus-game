@@ -17,10 +17,10 @@ public class Output {
         setGameStatus(status);
     }
 
-    //TODO incluir identificação das colunas.
     private void setBoard() {
         int length = 0;
         int[][] cave = Check.getCave();
+        System.out.println("      (0) (1) (2) (3)");
         for (int i = 0; i < 4; i++) {
             System.out.print("(" + i + ")  |");
             for (int j = 0; j < 4; j++) {
@@ -48,34 +48,30 @@ public class Output {
         Boolean hasPit = Check.hasPit(x, y);
 
 
-        setText("\n---------------------->>> Status"
+        setText("\n----------------------------->>> Status"
                 + "\n> Remaining arrows: " + Check.arrowAmount()
                 + "\n> Is Wumpus alive? " + wumpusAlive.toString()
                 + "\n> Did i find the gold? " + hasGold.toString()
                 + "\n> My position on the board: " + "[" + x + "," + y + "]"
-                + "\n> My current direction: " + Player.getDirection()
-                + "\n---------------------->>>"
-        );
+                + "\n> My current direction: " + Player.getDirection());
 
-        setText("\n---------------------->>> Sensors"
+        setText("----------------------------->>> Sensors"
                 + "\n" + Check.hasSensors(x, y)
-                + "\n---------------------->>> "
+                + "\n----------------------------->>>"
         );
-
-        //TODO ajustar mensagens dos sensores.
 
         if (hasPit) {
-            setText("  -   " + "UUUOOOOOW..... PLOFT!!!! \n"
-                    + "\n~~~~~ You fell in the pit. Your hero is died." + "\n");
+            setText("UUUOOOOOW..... PLOFT!!!! \n"
+                    + "\n~~~ You fell in the pit. Your hero is died." + "\n");
         }
 
         if (!status.isEmpty()) {
-            setText("~~> Game message: " + status + "\n");
+            setText("\n~~> Game message: " + status + "\n");
         }
 
         if (hasWumpus) {
-            setText("~~~~ AAAAAAHHHHHHH!!!! \n"
-                    + "  \nYour Hero is Dead!!\n");
+            setText("AAAAAAHHHHHHH!!!! \n"
+                    + "\n~~~~ Your Hero is Dead!!\n");
         }
     }
 
