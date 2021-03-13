@@ -1,10 +1,12 @@
 package refactoring.game.entities;
 
-public class Hero extends Personage {
+public class Hero {
     public String name;
     public boolean arrow;
     public boolean alive;
     public Direction directionOnBoard;
+    public int linePosition;
+    public int columnPosition;
 
     public Hero(String name) {
         this.name = name;
@@ -53,18 +55,16 @@ public class Hero extends Personage {
         this.directionOnBoard = directionOnBoard;
     }
 
-    @Override
     public int getColumnPosition() {
-        return super.getColumnPosition();
+        return columnPosition;
     }
 
-    @Override
     public int getLinePosition() {
-        return super.getLinePosition();
+        return linePosition;
     }
 
-    @Override
     public void setPosition(int linePosition, int columnPosition) {
-        super.setPosition(linePosition, columnPosition);
+        this.linePosition = linePosition;
+        this.columnPosition = columnPosition;
     }
 }

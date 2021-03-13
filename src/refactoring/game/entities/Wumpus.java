@@ -1,8 +1,11 @@
 package refactoring.game.entities;
 
-public class Wumpus extends Personage {
+public class Wumpus {
 
     private boolean alive;
+    public int linePosition;
+    public int columnPosition;
+
 
     public Wumpus() {
         alive = true;
@@ -16,18 +19,16 @@ public class Wumpus extends Personage {
         this.alive = alive;
     }
 
-    @Override
     public int getColumnPosition() {
-        return super.getColumnPosition();
+        return columnPosition;
     }
 
-    @Override
     public int getLinePosition() {
-        return super.getLinePosition();
+        return linePosition;
     }
 
-    @Override
     public void setPosition(int linePosition, int columnPosition) {
-        super.setPosition(linePosition, columnPosition);
+        this.linePosition = linePosition;
+        this.columnPosition = columnPosition;
     }
 }

@@ -1,10 +1,5 @@
 package refactoring.game.controller;
 
-import refactoring.game.entities.Cave;
-import refactoring.game.entities.Personage;
-import refactoring.game.entities.Hero;
-import refactoring.game.entities.Wumpus;
-
 public class Manager {
 
     public void startGame() {
