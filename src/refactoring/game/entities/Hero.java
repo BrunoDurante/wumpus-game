@@ -1,38 +1,46 @@
 package refactoring.game.entities;
 
+import refactoring.game.controller.HeroActions;
+
+import static refactoring.game.entities.Directions.*;
+
 public class Hero {
-    public String name;
-    public boolean arrow;
-    public boolean alive;
-    public Direction directionOnBoard;
-    public int linePosition;
-    public int columnPosition;
+    private String name;
+    private boolean arrow;
+    private boolean alive;
+    private Directions directionOnBoard;
+    private HeroActions command;
+
+    private int linePosition;
+    private int columnPosition;
 
     public Hero(String name) {
         this.name = name;
         arrow = true;
         alive = true;
-        directionOnBoard = Direction.EAST;
+        directionOnBoard = EAST;
+        command = new HeroActions();
     }
 
-    public boolean shoot(int dir) {
-        return true;
+    public void walk() {
+        command.walk(linePosition, columnPosition, directionOnBoard);
     }
 
-    public boolean walk() {
-        return true;
+    public void turnR() {
+
     }
 
-    public boolean turn() {
-        return true;
+    public void turnL() {
+
     }
+
+    public void shoot() {
+        //utilizar directionOnBoard para saber a direção da flechada
+    }
+
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public boolean hasArrow() {
@@ -47,11 +55,11 @@ public class Hero {
         this.alive = alive;
     }
 
-    public Direction getDirectionOnBoard() {
+    public Directions getDirectionOnBoard() {
         return directionOnBoard;
     }
 
-    public void setDirectionOnBoard(Direction directionOnBoard) {
+    public void setDirectionOnBoard(Directions directionOnBoard) {
         this.directionOnBoard = directionOnBoard;
     }
 
@@ -67,4 +75,5 @@ public class Hero {
         this.linePosition = linePosition;
         this.columnPosition = columnPosition;
     }
+
 }

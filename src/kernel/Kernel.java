@@ -294,7 +294,7 @@ public class Kernel {
         dir = ++dir % 4;
     }
 
-    //TODO Parei aqui, continuar.
+    //refatorado basicamente, falta testar
     public String walk() {
         int[] pos = getPlayerPosition();
         int x = pos[0];
@@ -308,7 +308,7 @@ public class Kernel {
                 case NORTH:
                     xDestino = x - 1;
                     if (xDestino <= -1) {
-                        resultWalk = "Here is Wall!! Change Direction!!";
+                        resultWalk = "Here is Wall!! Change Directions!!";
                         break;
                     } else {
                         putJogador(xDestino, y);
@@ -319,7 +319,7 @@ public class Kernel {
                 case EAST:
                     yDestino = y + 1;
                     if (yDestino >= 4) {
-                        resultWalk = "Here is Wall!! Change Direction!!";
+                        resultWalk = "Here is Wall!! Change Directions!!";
                         break;
                     } else {
                         putJogador(x, yDestino);
@@ -330,7 +330,7 @@ public class Kernel {
                 case SOUTH:
                     xDestino = x + 1;
                     if (xDestino >= 4) {
-                        resultWalk = "Here is Wall!! Change Direction!!";
+                        resultWalk = "Here is Wall!! Change Directions!!";
                         break;
                     } else {
                         putJogador(xDestino, y);
@@ -340,7 +340,7 @@ public class Kernel {
                 case WEST:
                     yDestino = y - 1;
                     if (yDestino <= -1) {
-                        resultWalk = "Here is Wall!! Change Direction!!";
+                        resultWalk = "Here is Wall!! Change Directions!!";
                         break;
                     } else {
                         putJogador(x, yDestino);

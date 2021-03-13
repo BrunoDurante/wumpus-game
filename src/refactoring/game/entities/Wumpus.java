@@ -6,7 +6,6 @@ public class Wumpus {
     public int linePosition;
     public int columnPosition;
 
-
     public Wumpus() {
         alive = true;
     }
