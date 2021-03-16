@@ -1,4 +1,4 @@
-package refactoring.game.controller;
+package refactoring.game;
 
 import kernel.Kernel;
 import refactoring.game.entities.Cave;
