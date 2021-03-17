@@ -24,36 +24,27 @@ public class Cave {
      * obs: Se destino < 0 ou > 3, foge das limita��es do mapa [4,4].
      */
     public static boolean isWall(int linePosition, int columnPosition, int direction) {
-        int destino = 0;
+        int destination = 0;
         switch (direction) {
             case 0: {
-                destino = linePosition - 1;
+                destination = linePosition - 1;
                 break;
             }
             case 1: {
-                destino = columnPosition + 1;
+                destination = columnPosition + 1;
                 break;
             }
             case 2: {
-                destino = linePosition + 1;
+                destination = linePosition + 1;
                 break;
             }
             case 3: {
-                destino = columnPosition - 1;
+                destination = columnPosition - 1;
                 break;
             }
-            default:
-                throw new IllegalStateException("Unexpected value: " + direction);
+
         }
-        if (destino < 0 || destino > 3) {
-            return true;
-        } else {
-            return false;
-        }
+        return destination < 0 || destination > 3;
     }
 
-    //norte, leste, sul, oest
-    public static int getDirectionAmount(){
-        return 4;
-    }
 }

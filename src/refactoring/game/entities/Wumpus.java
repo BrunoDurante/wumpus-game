@@ -3,8 +3,8 @@ package refactoring.game.entities;
 public class Wumpus {
 
     private boolean alive;
-    public int linePosition;
-    public int columnPosition;
+    private int linePosition;
+    private int columnPosition;
 
     public Wumpus() {
         alive = true;
@@ -12,10 +12,6 @@ public class Wumpus {
 
     public boolean isAlive() {
         return alive;
-    }
-
-    public void setAlive(boolean alive) {
-        this.alive = alive;
     }
 
     public int getColumnPosition() {

@@ -6,7 +6,7 @@ public class Hero {
     private String name;
     private boolean arrow;
     private boolean alive;
-    private int directionOnBoard;
+    private int direction;
     private HeroActions command;
 
     private int linePosition;
@@ -16,22 +16,23 @@ public class Hero {
         this.name = name;
         arrow = true;
         alive = true;
-        directionOnBoard = Cave.EAST;
+        direction = Cave.EAST;
         command = new HeroActions();
     }
 
     public void walk() {
-        command.walk(linePosition, columnPosition, directionOnBoard);
+        command.walk(linePosition, columnPosition, direction);
     }
 
-    public void turnR() {
-        directionOnBoard = command.turnRight(directionOnBoard);
+    public void turnRight() {
+        direction = command.turnRight(direction);
     }
 
-    public void turnL() {
-        directionOnBoard = command.turnLeft(directionOnBoard);
+    public void turnLeft() {
+        direction = command.turnLeft(direction);
     }
 
+    //TODO
     public void shoot() {
         //utilizar directionOnBoard para saber a direção da flechada
     }
@@ -48,8 +49,8 @@ public class Hero {
         return alive;
     }
 
-    public int getDirectionOnBoard() {
-        return directionOnBoard;
+    public int getDirection() {
+        return direction;
     }
 
     public int getColumnPosition() {

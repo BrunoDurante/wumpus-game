@@ -1,11 +1,11 @@
 package refactoring.game.controller;
 
 public interface PlayerCommand {
-    void walk();
+    void walk(int linePosition, int columnPosition, int direction);
 
     void shoot();
 
-    void turnR();
+    int turnRight(int direction);
 
-    void turnL();
+    int turnLeft(int direction);
 }

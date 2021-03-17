@@ -2,8 +2,9 @@ package refactoring.game.controller;
 
 import refactoring.game.entities.Cave;
 
-public class HeroActions {
+public class HeroActions implements PlayerCommand {
 
+    @Override
     public void walk(int linePosition, int columnPosition, int direction) {
         if (Cave.isWall(linePosition, columnPosition, direction)) {
             //solicitar ao usuário virar para esquerda ou direita, e tentar novamente (parede true).
@@ -12,25 +13,20 @@ public class HeroActions {
         }
     }
 
+    @Override
     public void shoot() {
-        //utilizar directionOnBoard para saber a direção da flechada
+        //utilizar direction para saber a direção da flechada
     }
 
+    @Override
     public int turnRight(int direction) {
-        direction = direction + 1;
-        if (direction > 3) {
-            return Cave.NORTH;
-        } else {
-            return direction;
-        }
+        direction++;
+        return direction > 3 ? Cave.NORTH : direction;
     }
 
+    @Override
     public int turnLeft(int direction) {
-        direction = direction - 1;
-        if (direction < 0) {
-            return Cave.WEST;
-        } else {
-            return direction;
-        }
+        direction--;
+        return direction < 0 ? Cave.WEST : direction;
     }
 }

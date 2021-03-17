@@ -1,6 +1,5 @@
 package refactoring.game;
 
-import kernel.Kernel;
 import refactoring.game.entities.Cave;
 import refactoring.game.entities.Hero;
 
@@ -9,7 +8,6 @@ import java.util.Scanner;
 public class Game {
 
     public Cave cave;
-    public Kernel kernel;
     public Hero hero;
 
     public static void main(String[] args) {
@@ -24,12 +22,12 @@ public class Game {
                 hero.walk();
                 break;
             }
-            case "turnL": {
-                hero.turnL();
+            case "turn left": {
+                hero.turnLeft();
                 break;
             }
-            case "turnR": {
-                hero.turnR();
+            case "turn right": {
+                hero.turnRight();
                 break;
             }
             case "shoot": {
@@ -42,7 +40,9 @@ public class Game {
         }
 
         //checar e passar um status do que ocorreu na rodada
+        //para inserir infos na tela, passar hero como parâmetro
         //verificar fim do jogo
+        sc.close();
 
     }
 
