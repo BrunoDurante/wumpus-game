@@ -6,7 +6,7 @@ public class Hero {
     private String name;
     private boolean arrow;
     private boolean alive;
-    private int direction;
+    private Integer direction;
     private HeroActions command;
 
     private int linePosition;
