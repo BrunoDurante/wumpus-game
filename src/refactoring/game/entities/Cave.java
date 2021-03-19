@@ -20,8 +20,8 @@ public class Cave {
         cave[line][column] += element;
     }
 
-    /*somando 1 pois com walk se anda 1 casa.
-     * obs: Se destino < 0 ou > 3, foge das limita��es do mapa [4,4].
+    /* somando 1 pois com walk se anda 1 casa.
+     * obs: Se destino < 0 ou > 3, foge das limitacoes do mapa [4,4].
      */
     public static boolean isWall(int linePosition, int columnPosition, Integer direction) {
         if (NORTH.equals(direction)) {
@@ -38,6 +38,5 @@ public class Cave {
         }
         return false;
     }
-
 
 }

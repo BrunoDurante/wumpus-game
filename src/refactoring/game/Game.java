@@ -2,19 +2,21 @@ package refactoring.game;
 
 import refactoring.game.entities.Cave;
 import refactoring.game.entities.Hero;
+import refactoring.game.entities.Wumpus;
 
 import java.util.Scanner;
 
 public class Game {
 
     public Cave cave;
-    public Hero hero;
+
 
     public static void main(String[] args) {
         //showIntro();
         //inputNameHero();
 
         Hero hero = new Hero("");
+        Wumpus wumpus = new Wumpus();
         Scanner sc = new Scanner(System.in);
 
         switch (sc.next()) {
@@ -31,7 +33,7 @@ public class Game {
                 break;
             }
             case "shoot": {
-                hero.shoot();
+                hero.shoot(wumpus);
                 break;
             }
             default: {

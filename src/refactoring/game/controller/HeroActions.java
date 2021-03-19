@@ -1,6 +1,9 @@
 package refactoring.game.controller;
 
 import refactoring.game.entities.Cave;
+import refactoring.game.entities.Wumpus;
+
+import static refactoring.game.entities.Cave.*;
 
 public class HeroActions {
 
@@ -12,15 +15,27 @@ public class HeroActions {
         }
     }
 
-    public void shoot() {
-        //utilizar direction para saber a direção da flechada
+    public void shoot(Wumpus wumpus, Integer heroDirection, int heroLinePosition, int heroColumnPosition) {
+        if (wumpus.getLinePosition() == heroLinePosition) {
+
+
+        } else if (wumpus.getColumnPosition() == heroColumnPosition) {
+
+        }
+        // pegar posição do herói
+        // pegar posição do wumpus
+
+        // verificar direção
+        // verificar se dá match da direção com a posição do wumpus
+        // se sim, wumpus morre
+        // se nao, segue o jogo
     }
 
     public Integer turnRight(Integer direction) {
-        return (direction + 1) > 3 ? Cave.NORTH : direction;
+        return (direction + 1) > 3 ? NORTH : direction;
     }
 
     public int turnLeft(int direction) {
-       return (direction - 1) < 0 ? Cave.WEST : direction;
+        return (direction - 1) < 0 ? WEST : direction;
     }
 }

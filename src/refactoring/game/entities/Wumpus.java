@@ -22,6 +22,7 @@ public class Wumpus {
         return linePosition;
     }
 
+
     public void setPosition(int linePosition, int columnPosition) {
         this.linePosition = linePosition;
         this.columnPosition = columnPosition;

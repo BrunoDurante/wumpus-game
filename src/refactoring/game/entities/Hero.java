@@ -32,9 +32,12 @@ public class Hero {
         direction = command.turnLeft(direction);
     }
 
-    //TODO
-    public void shoot() {
-        //utilizar directionOnBoard para saber a direção da flechada
+    //TODO continuar
+    public void shoot(Wumpus wumpus) {
+        if (arrow) {
+            command.shoot(wumpus, direction, linePosition, columnPosition);
+            arrow = false;
+        }
     }
 
     public String getName() {
