@@ -1,23 +1,20 @@
 package refactoring.game;
 
-import refactoring.game.entities.Cave;
-import refactoring.game.entities.Hero;
-import refactoring.game.entities.Wumpus;
+import refactoring.game.entities.main.Hero;
+import refactoring.game.entities.main.Wumpus;
 
 import java.util.Scanner;
 
 public class Game {
 
-    public Cave cave;
-
-
     public static void main(String[] args) {
-        //showIntro();
-        //inputNameHero();
-
-        Hero hero = new Hero("");
-        Wumpus wumpus = new Wumpus();
         Scanner sc = new Scanner(System.in);
+
+        Config config = new Config();
+        config.showIntro();
+
+        Hero hero = new Hero(config.inputNameHero(sc));
+        Wumpus wumpus = new Wumpus();
 
         switch (sc.next()) {
             case "walk": {
@@ -36,7 +33,11 @@ public class Game {
                 hero.shoot(wumpus);
                 break;
             }
+            case "hack board": {
+                config.showBoardElements();
+            }
             default: {
+                System.out.println("~ Unknown command, please type again.");
                 break;
             }
         }

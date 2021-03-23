@@ -1,27 +1,30 @@
-package refactoring.game.entities;
+package refactoring.game.entities.main;
 
-import refactoring.game.controller.HeroActions;
+import refactoring.game.commands.HeroActions;
+import refactoring.game.entities.Cave;
+import refactoring.game.entities.Codename;
+import refactoring.game.entities.Entity;
 
-public class Hero {
+
+public class Hero extends Entity {
     private String name;
     private boolean arrow;
     private boolean alive;
     private Integer direction;
     private HeroActions command;
 
-    private int linePosition;
-    private int columnPosition;
-
     public Hero(String name) {
-        this.name = name;
+        super(3, 0, Codename.HERO);
+
         arrow = true;
         alive = true;
         direction = Cave.EAST;
+        this.name = name;
         command = new HeroActions();
     }
 
     public void walk() {
-        command.walk(linePosition, columnPosition, direction);
+        command.walk(line, column, direction);
     }
 
     public void turnRight() {
@@ -35,7 +38,7 @@ public class Hero {
     //TODO continuar
     public void shoot(Wumpus wumpus) {
         if (arrow) {
-            command.shoot(wumpus, direction, linePosition, columnPosition);
+            command.shoot(wumpus, direction, line, column);
             arrow = false;
         }
     }
@@ -55,18 +58,4 @@ public class Hero {
     public int getDirection() {
         return direction;
     }
-
-    public int getColumnPosition() {
-        return columnPosition;
-    }
-
-    public int getLinePosition() {
-        return linePosition;
-    }
-
-    public void setPosition(int linePosition, int columnPosition) {
-        this.linePosition = linePosition;
-        this.columnPosition = columnPosition;
-    }
-
 }

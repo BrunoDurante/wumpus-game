@@ -1,7 +1,7 @@
-package refactoring.game.controller;
+package refactoring.game.commands;
 
 import refactoring.game.entities.Cave;
-import refactoring.game.entities.Wumpus;
+import refactoring.game.entities.main.Wumpus;
 
 import static refactoring.game.entities.Cave.*;
 
@@ -9,15 +9,22 @@ public class HeroActions {
 
     public void walk(int linePosition, int columnPosition, Integer direction) {
         if (Cave.isWall(linePosition, columnPosition, direction)) {
-            //solicitar ao usuário virar para esquerda ou direita, e tentar novamente (parede true).
+            System.out.println("~ You hit the wall.");
         } else {
             Cave.setElementOnBoard(linePosition, columnPosition, "H");
         }
     }
 
+/*
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 H 0 W
+ */
     public void shoot(Wumpus wumpus, Integer heroDirection, int heroLinePosition, int heroColumnPosition) {
         if (wumpus.getLinePosition() == heroLinePosition) {
-
+            //pegar a direção do hero
+            //
 
         } else if (wumpus.getColumnPosition() == heroColumnPosition) {
 

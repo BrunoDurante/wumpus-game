@@ -2,14 +2,14 @@ package refactoring.game.entities.sensor;
 
 import refactoring.game.entities.Codename;
 
-public class Breeze extends Sensor {
+public class Light extends Sensor {
 
-    public Breeze() {
-        super(Codename.BREEZE);
+    public Light() {
+        super(Codename.LIGHT);
     }
 
     @Override
     protected String getResponse() {
-        return "Breeze";
+        return "Light";
     }
 }
