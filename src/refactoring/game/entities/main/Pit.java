@@ -28,7 +28,7 @@ public class Pit extends Entity {
                 x = random.nextInt(4);
                 y = random.nextInt(4);
             } while (x >= 2 && y < 2 || (x < 2 && y >= 2) || gold.exists(x, y) || wumpus.exists(x, y) || this.exists(x, y)
-                    || gold.hasCellAvailableAround(x, y, wumpus, this));
+                    || gold.canBeBlocked(x, y, wumpus, this));
             setPosition(x, y);
             putSensor(x, y);
             count++;

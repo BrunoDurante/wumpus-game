@@ -34,8 +34,28 @@ public class Gold extends Entity {
         light.setSensorAroundElement();
     }
 
-    public boolean hasCellAvailableAround(int destinationLine, int destinationColumn, Wumpus wumpus, Pit pit) {
-        return checkCellsAround(destinationLine, destinationColumn, wumpus, pit);
+    /**
+     * Lógica de funcionamento do método abaixo.
+     * Deve retornar 'true' caso o 'gold' seja bloqueado ao inserir um 'pit'.
+     * Caso 'true', o Do While vai gerar novamente novos valores para linha e coluna do 'pit', e testará novamente se
+     * bloqueará o 'gold'.
+     * <p>
+     * Se uma, das 4 posições de acesso ao 'gold' estiver disponível, o método devolve 'false', não interferindo no fluxo
+     * de criação do 'pit' no tabuleiro.
+     * <p>
+     * Sem o método canBeBlocked(), poderíamos ter o seguinte problema:
+     * <pre>
+     * | |P| | |
+     * |P|G|P| |
+     * | |W| | |
+     * | | | | |
+     * </pre>
+     * No caso acima, o acesso ao 'gold'(G) é impossível, visto que as células ao redor estão preenchidas com elementos
+     * que fazem o jogador perder o game, caso acessá-las.
+     */
+
+    public boolean canBeBlocked(int destinationLine, int destinationColumn, Wumpus wumpus, Pit pit) {
+        return !(checkCellsAround(destinationLine, destinationColumn, wumpus, pit));
     }
 
     private boolean checkCellsAround(int destinationLine, int destinationColumn, Wumpus wumpus, Pit pit) {
