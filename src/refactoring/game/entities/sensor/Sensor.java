@@ -4,10 +4,15 @@ import refactoring.game.entities.Cave;
 import refactoring.game.entities.Codename;
 import refactoring.game.entities.Entity;
 
-public abstract class Sensor extends Entity {
+public abstract class Sensor{
+    public int line;
+    public int column;
+    public Codename codename;
 
-    public Sensor(Codename codename) {
-        super(0, 0, codename);
+    public Sensor(int linePositionEntity, int columnPositionEntity, Codename codename) {
+        this.line = linePositionEntity;
+        this.column = columnPositionEntity;
+        this.codename = codename;
     }
 
     protected abstract String getResponse();

@@ -1,6 +1,7 @@
 package refactoring.game.commands;
 
 import refactoring.game.entities.Cave;
+import refactoring.game.entities.Entity;
 import refactoring.game.entities.main.Wumpus;
 
 import static refactoring.game.entities.Cave.*;
@@ -21,7 +22,7 @@ public class HeroActions {
 0 0 0 0
 0 H 0 W
  */
-    public void shoot(Wumpus wumpus, Integer heroDirection, int heroLinePosition, int heroColumnPosition) {
+    public void shoot(Entity wumpus, Integer heroDirection, int heroLinePosition, int heroColumnPosition) {
         if (wumpus.getLinePosition() == heroLinePosition) {
             //pegar a direção do hero
             //

@@ -4,8 +4,8 @@ import refactoring.game.entities.Codename;
 
 public class Breeze extends Sensor {
 
-    public Breeze() {
-        super(Codename.BREEZE);
+    public Breeze(int linePositionEntity, int columnPositionEntity) {
+        super(linePositionEntity, columnPositionEntity, Codename.BREEZE);
     }
 
     @Override

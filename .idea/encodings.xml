@@ -3,8 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/kernel/Kernel.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/refactoring/game/entities/Cave.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/refactoring/game/entities/main/Hero.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/refactoring/game/entities/main/Hero.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/refactoring/game/entities/Hero.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/refactoring/game/entities/Hero.java" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1252" />
   </component>
 </project>

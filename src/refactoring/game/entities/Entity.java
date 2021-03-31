@@ -1,13 +1,13 @@
 package refactoring.game.entities;
 
+import java.util.Random;
+
 public abstract class Entity {
     public int line;
     public int column;
     public Codename codename;
 
-    public Entity(int line, int column, Codename codename){
-        this.line = line;
-        this.column = column;
+    public Entity(Codename codename) {
         this.codename = codename;
     }
 
@@ -22,6 +22,20 @@ public abstract class Entity {
     public void setPosition(int linePosition, int columnPosition) {
         this.line = linePosition;
         this.column = columnPosition;
-        Cave.setElementOnBoard(line, column, codename.name());
+        Cave.setElementOnBoard(line, column, this.codename.name());
     }
+
+    public boolean exists(int lineCheck, int columnCheck) {
+        if (line == lineCheck && column == columnCheck) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public abstract void putEntityBoard(Random random, Entity... entities);
+
+    protected abstract void putSensor(int linePositionEntity, int columnPositionEntity);
+
+
 }

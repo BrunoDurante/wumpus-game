@@ -1,9 +1,8 @@
-package refactoring.game.entities.main;
+package refactoring.game.entities;
 
 import refactoring.game.commands.HeroActions;
-import refactoring.game.entities.Cave;
-import refactoring.game.entities.Codename;
-import refactoring.game.entities.Entity;
+
+import java.util.Random;
 
 
 public class Hero extends Entity {
@@ -14,8 +13,8 @@ public class Hero extends Entity {
     private HeroActions command;
 
     public Hero(String name) {
-        super(3, 0, Codename.HERO);
-
+        super(Codename.HERO);
+        setPosition(3,0);
         arrow = true;
         alive = true;
         direction = Cave.EAST;
@@ -35,8 +34,7 @@ public class Hero extends Entity {
         direction = command.turnLeft(direction);
     }
 
-    //TODO continuar
-    public void shoot(Wumpus wumpus) {
+    public void shoot(Entity wumpus) {
         if (arrow) {
             command.shoot(wumpus, direction, line, column);
             arrow = false;
@@ -57,5 +55,16 @@ public class Hero extends Entity {
 
     public int getDirection() {
         return direction;
+    }
+
+
+    @Override
+    public void putEntityBoard(Random random, Entity... entities) {
+
+    }
+
+    @Override
+    protected void putSensor(int linePositionEntity, int columnPositionEntity) {
+
     }
 }

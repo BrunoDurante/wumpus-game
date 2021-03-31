@@ -95,21 +95,27 @@ public class Kernel {
     }
 
     // Método para não bloquear Gold.
+
+    /*
+    O método abaixo serve para checar elementos ao redor do ouro. Retornando false, o fluxo no Do While finaliza.
+    E isso quer dizer que o espaço visualizado está disponível para inserir buraco.
+     */
+
     private boolean checkAroundGold(int x, int y) {
         int xG = localGold[0];
         int yG = localGold[1];
         int countElement = 0;
-        int countCelDisp = 0;
+        int celulasDentroDoBoard = 0;
 
         // left
         yG--;
-        if (yG >= 0 && yG < 4) {
-            countCelDisp++;
-            if (hasPit(x, yG)) {
-                countElement++;
+        if (yG >= 0 && yG < 4) {        //check limits
+            celulasDentroDoBoard++;             //incremento 1 na contagem de celulas disponíveis
+            if (hasPit(x, yG)) {        //se tiver buraco
+                countElement++;         //incremento 1 na contagem de elementos
             }
-            if (hasWumpus(x, yG)) {
-                countElement++;
+            if (hasWumpus(x, yG)) {     //se tiver wumpus
+                countElement++;         //incremento 1 na contagem de elementos
             }
         }
         yG++;
@@ -117,7 +123,7 @@ public class Kernel {
         // right
         yG++;
         if (yG >= 0 && yG < 4) {
-            countCelDisp++;
+            celulasDentroDoBoard++;
             if (hasPit(x, yG)) {
                 countElement++;
             }
@@ -130,7 +136,7 @@ public class Kernel {
         // bottom
         xG++;
         if (xG >= 0 && xG < 4) {
-            countCelDisp++;
+            celulasDentroDoBoard++;
             if (hasPit(xG, y)) {
                 countElement++;
             }
@@ -143,7 +149,7 @@ public class Kernel {
         // top
         xG--;
         if (xG >= 0 && xG < 4) {
-            countCelDisp++;
+            celulasDentroDoBoard++;
             if (hasPit(xG, y)) {
                 countElement++;
             }
@@ -153,7 +159,7 @@ public class Kernel {
         }
         xG++;
 
-        if ((countElement + 1) >= countCelDisp) {
+        if ((countElement + 1) >= celulasDentroDoBoard) {
             return true;
         } else {
             return false;
