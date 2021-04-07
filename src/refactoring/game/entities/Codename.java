@@ -1,14 +1,15 @@
 package refactoring.game.entities;
 
 public enum Codename {
-    GOLD("G"),
-    HERO("H"),
-    PIT("P"),
-    WUMPUS("W"),
-    BREEZE("B"),
-    LIGHT("L"),
-    STINCK("S");
+    G("Gold"),
+    H("Hero"),
+    P("Pit"),
+    W("Wumpus"),
+    B("Breeze"),
+    L("Light"),
+    S("Stinck");
 
     Codename(String codename) {
     }
+
 }

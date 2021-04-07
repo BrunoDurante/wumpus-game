@@ -5,7 +5,7 @@ import refactoring.game.entities.Codename;
 public class Stinck extends Sensor {
 
     public Stinck(int linePositionEntity, int columnPositionEntity) {
-        super(linePositionEntity, columnPositionEntity, Codename.STINCK);
+        super(linePositionEntity, columnPositionEntity, Codename.S);
     }
 
     @Override

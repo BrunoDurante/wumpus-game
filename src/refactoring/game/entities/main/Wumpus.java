@@ -12,7 +12,7 @@ public class Wumpus extends Entity {
     private boolean alive;
 
     public Wumpus() {
-        super(Codename.WUMPUS);
+        super(Codename.W);
         alive = true;
     }
 

@@ -22,7 +22,7 @@ public abstract class Entity {
     public void setPosition(int linePosition, int columnPosition) {
         this.line = linePosition;
         this.column = columnPosition;
-        Cave.setElementOnBoard(line, column, this.codename.name());
+        Cave.setElementOnBoard(line, column, codename.toString());
     }
 
     public boolean exists(int lineCheck, int columnCheck) {

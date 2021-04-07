@@ -2,18 +2,18 @@ package refactoring.game.entities;
 
 public class Cave {
 
-    public static String[][] cave;
+    public static String[][] cave = new String[4][4];
     public static Integer NORTH = 0;
     public static Integer EAST = 1;
     public static Integer SOUTH = 2;
     public static Integer WEST = 3;
 
-    public Cave() {
-        cave = new String[4][4];
-    }
-
-    public static String[][] getCave() {
-        return cave;
+    public static void createCave() {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                cave[i][j] = "";
+            }
+        }
     }
 
     public static void setElementOnBoard(int line, int column, String element) {
@@ -43,6 +43,31 @@ public class Cave {
         return false;
     }
 
+    public static String getCaveBoard() {
+        int length = 0;
+        String caveBoard = "";
+
+        caveBoard += "      (A) (B) (C) (D)\n";
+        for (int i = 0; i < 4; i++) {
+            caveBoard += "(" + i + ")  |";
+            for (int j = 0; j < 4; j++) {
+                length = String.valueOf(cave[i][j]).length();
+                if (length == 1) {
+                    caveBoard += "  " + cave[i][j] + "|";
+                } else if (length == 2) {
+                    caveBoard += " " + cave[i][j] + "|";
+                } else if (length == 0) {
+                    caveBoard += "   " + "|";
+                } else {
+                    caveBoard += cave[i][j] + "|";
+                }
+            }
+            caveBoard += "\n";
+        }
+
+        return caveBoard;
+
+    }
 
 
 }

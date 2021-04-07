@@ -13,7 +13,7 @@ public class Hero extends Entity {
     private HeroActions command;
 
     public Hero(String name) {
-        super(Codename.HERO);
+        super(Codename.H);
         setPosition(3,0);
         arrow = true;
         alive = true;

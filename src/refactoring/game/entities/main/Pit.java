@@ -3,7 +3,6 @@ package refactoring.game.entities.main;
 import refactoring.game.entities.Codename;
 import refactoring.game.entities.Entity;
 import refactoring.game.entities.sensor.Breeze;
-import refactoring.game.entities.sensor.Light;
 import refactoring.game.entities.sensor.Sensor;
 
 import java.util.Random;
@@ -11,7 +10,7 @@ import java.util.Random;
 public class Pit extends Entity {
 
     public Pit() {
-        super(Codename.PIT);
+        super(Codename.P);
     }
 
     @Override

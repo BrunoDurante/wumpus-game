@@ -1,13 +1,17 @@
 package refactoring.game;
 
+import refactoring.game.entities.Cave;
 import refactoring.game.entities.Entity;
 import refactoring.game.entities.Hero;
 import refactoring.game.entities.main.Wumpus;
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
     public static boolean gaming = true;
+
+    // colocar um thread sleep nas mensagens do game para o jogador, simulando games de rpg.
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -15,18 +19,20 @@ public class Game {
         Config config = new Config();
         config.showIntro();
 
+
+        Cave.createCave();
         Hero hero = new Hero(config.inputNameHero(sc));
 
-        // welcome message
+        //TODO Parei aqui
+        config.welcomeHero(hero.getName());
 
-        config.prepareGame();
-
-
-        Entity wumpus = new Wumpus();
+        Map<String, Entity> entities = config.prepareGame();
+        config.showBoard();
+        config.showStatus();
 
         while (gaming) {
             System.out.print("Your action is...\n:");
-            switch (sc.next()) {
+            switch (sc.nextLine()) {
                 case "walk": {
                     hero.walk();
                     break;
@@ -40,14 +46,14 @@ public class Game {
                     break;
                 }
                 case "shoot": {
-                    hero.shoot(wumpus);
+                    hero.shoot(entities.get("wumpus"));
                     break;
                 }
                 case "hack board": {
 //                    config.showBoardElements();
                 }
                 default: {
-                    System.out.println("~ Unknown command, please type again.");
+                    System.out.println("~ Unknown command, please type again.\n");
                     break;
                 }
             }

@@ -12,7 +12,7 @@ import static refactoring.game.entities.Cave.checkLimits;
 public class Gold extends Entity {
 
     public Gold() {
-        super(Codename.GOLD);
+        super(Codename.G);
     }
 
     @Override
@@ -52,6 +52,13 @@ public class Gold extends Entity {
      * </pre>
      * No caso acima, o acesso ao 'gold'(G) é impossível, visto que as células ao redor estão preenchidas com elementos
      * que fazem o jogador perder o game, caso acessá-las.
+     *
+     * @param destinationLine linha destino na matriz do tabuleiro.
+     * @param destinationColumn coluna destino na matriz do tabuleiro.
+     * @param wumpus instância do wumpus gerado no jogo.
+     * @param pit instância dos buracos gerados no jogo.
+     *
+     * @return true ou false
      */
 
     public boolean canBeBlocked(int destinationLine, int destinationColumn, Wumpus wumpus, Pit pit) {
