@@ -1,12 +1,10 @@
 package refactoring.game.entities;
 
+import refactoring.game.Directions;
+
 public class Cave {
 
     public static String[][] cave = new String[4][4];
-    public static Integer NORTH = 0;
-    public static Integer EAST = 1;
-    public static Integer SOUTH = 2;
-    public static Integer WEST = 3;
 
     public static void createCave() {
         for (int i = 0; i < 4; i++) {
@@ -28,16 +26,16 @@ public class Cave {
      * obs: Se destino < 0 ou > 3, foge das limitacoes do mapa [4,4].
      */
     public static boolean isWall(int linePosition, int columnPosition, Integer direction) {
-        if (NORTH.equals(direction)) {
+        if (direction.equals(Directions.NORTH.valueOnBoard)) {
             return checkLimits(linePosition - 1);
         }
-        if (EAST.equals(direction)) {
+        if (direction.equals(Directions.EAST.valueOnBoard)) {
             return checkLimits(columnPosition + 1);
         }
-        if (SOUTH.equals(direction)) {
+        if (direction.equals(Directions.SOUTH.valueOnBoard)) {
             return checkLimits(linePosition + 1);
         }
-        if (WEST.equals(direction)) {
+        if (direction.equals(Directions.WEST.valueOnBoard)) {
             return checkLimits(columnPosition - 1);
         }
         return false;
@@ -47,9 +45,9 @@ public class Cave {
         int length = 0;
         String caveBoard = "";
 
-        caveBoard += "      (A) (B) (C) (D)\n";
+        caveBoard += "         (A) (B) (C) (D)\n";
         for (int i = 0; i < 4; i++) {
-            caveBoard += "(" + i + ")  |";
+            caveBoard += "   (" + i + ")  |";
             for (int j = 0; j < 4; j++) {
                 length = String.valueOf(cave[i][j]).length();
                 if (length == 1) {
@@ -67,6 +65,25 @@ public class Cave {
 
         return caveBoard;
 
+    }
+
+    public String getDirectionToString(int direction){
+        switch (direction){
+            case 0:{
+                return Directions.NORTH.name();
+            }
+            case 1:{
+                return Directions.EAST.name();
+            }
+            case 2:{
+                return Directions.SOUTH.name();
+            }
+            case 3:{
+                return Directions.WEST.name();
+            }
+            default:
+                return "Not found";
+        }
     }
 
 

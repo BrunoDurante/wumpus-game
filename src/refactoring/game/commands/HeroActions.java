@@ -1,5 +1,6 @@
 package refactoring.game.commands;
 
+import refactoring.game.Directions;
 import refactoring.game.entities.Cave;
 import refactoring.game.entities.Entity;
 import refactoring.game.entities.main.Wumpus;
@@ -8,7 +9,7 @@ import static refactoring.game.entities.Cave.*;
 
 public class HeroActions {
 
-    public void walk(int linePosition, int columnPosition, Integer direction) {
+    public void walk(int linePosition, int columnPosition, int direction) {
         if (Cave.isWall(linePosition, columnPosition, direction)) {
             System.out.println("~ You hit the wall.");
         } else {
@@ -16,12 +17,12 @@ public class HeroActions {
         }
     }
 
-/*
-0 0 0 0
-0 0 0 0
-0 0 0 0
-0 H 0 W
- */
+    /*
+    0 0 0 0
+    0 0 0 0
+    0 0 0 0
+    0 H 0 W
+     */
     public void shoot(Entity wumpus, Integer heroDirection, int heroLinePosition, int heroColumnPosition) {
         if (wumpus.getLinePosition() == heroLinePosition) {
             //pegar a direção do hero
@@ -39,11 +40,11 @@ public class HeroActions {
         // se nao, segue o jogo
     }
 
-    public Integer turnRight(Integer direction) {
-        return (direction + 1) > 3 ? NORTH : direction;
+    public int turnRight(int direction) {
+        return (direction + 1) > 3 ? Directions.NORTH.valueOnBoard : direction;
     }
 
     public int turnLeft(int direction) {
-        return (direction - 1) < 0 ? WEST : direction;
+        return (direction - 1) < 0 ? Directions.WEST.valueOnBoard : direction;
     }
 }

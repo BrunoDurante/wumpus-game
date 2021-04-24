@@ -12,4 +12,8 @@ public enum Codename {
     Codename(String codename) {
     }
 
+    public String getDescription(String codeName){
+        return "";
+    }
+
 }

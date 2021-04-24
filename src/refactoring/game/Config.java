@@ -2,6 +2,7 @@ package refactoring.game;
 
 import refactoring.game.entities.Cave;
 import refactoring.game.entities.Entity;
+import refactoring.game.entities.Hero;
 import refactoring.game.entities.main.Gold;
 import refactoring.game.entities.main.Pit;
 import refactoring.game.entities.main.Wumpus;
@@ -9,16 +10,26 @@ import refactoring.game.entities.main.Wumpus;
 import java.util.*;
 
 public class Config {
+    private Hero hero;
+    private Wumpus wumpus;
 
-    public Config(){}
+    public Config() {
+    }
+
+    public void showRules() {
+        System.out.println("~ To walk through the cave type \"walk\".\n"
+                + "~ To turn right, type \"turnR\".\n"
+                + "~ To turn left, type \"turnL\". \n"
+                + "~ To shoot type \"shoot\".");
+    }
 
     public String inputNameHero(Scanner sc) {
         System.out.println("\n~ So... come on?\n");
         System.out.print("> enter the Hero name...\n: ");
-        return sc.next();
+        return sc.nextLine();
     }
 
-    public void showIntro(){
+    public void showIntro() {
         System.out.println("----------------------------------------------------------");
         System.out.println("--------- Welcome to WUMPUS WORLD GAME (remake) ----------");
         System.out.println("----------------------------------------------------------");
@@ -41,17 +52,20 @@ public class Config {
     }
 
     public void showBoard() {
-        System.out.println("~Cave");
         System.out.println(Cave.getCaveBoard());
     }
 
-    public void showStatus(){
-        System.out.println("STATUS");
+    public void showStatus(Hero hero) {
+        System.out.println("\n> Game status");
+        System.out.println("Has an arrow? " + hero.hasArrow());
+        System.out.println("Is wumpus alive? " + wumpus.isAlive());
+        System.out.println("Your position on the board: " + "[" + hero.getPositionToString() + "]");
+        System.out.println("Your current direction: " + hero.getDirection());
     }
 
-    public void welcomeHero(String name){
-        System.out.println("~Welcome " + name + "!");
-        System.out.println("~This is the cave...");
+    public void welcomeHero(String name) {
+        System.out.println("\n~ Welcome " + name + "!");
+        System.out.println("~ This is the cave...\n");
 
     }
 
@@ -59,7 +73,8 @@ public class Config {
         Entity gold = new Gold();
         gold.putEntityBoard(new Random(), null);
 
-        Entity wumpus = new Wumpus();
+        Wumpus wumpus = new Wumpus();
+        this.wumpus = wumpus;
         wumpus.putEntityBoard(new Random(), gold);
 
         Entity pit = new Pit();

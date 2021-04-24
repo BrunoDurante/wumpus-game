@@ -23,16 +23,16 @@ public class Game {
         Cave.createCave();
         Hero hero = new Hero(config.inputNameHero(sc));
 
-        //TODO Parei aqui
         config.welcomeHero(hero.getName());
 
         Map<String, Entity> entities = config.prepareGame();
         config.showBoard();
-        config.showStatus();
+        config.showRules();
+        config.showStatus(hero);
 
         while (gaming) {
             System.out.print("Your action is...\n:");
-            switch (sc.nextLine()) {
+            switch (sc.next()) {
                 case "walk": {
                     hero.walk();
                     break;
