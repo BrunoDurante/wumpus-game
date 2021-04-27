@@ -9,7 +9,10 @@ public enum Codename {
     L("Light"),
     S("Stinck");
 
+    private String codename;
+
     Codename(String codename) {
+        this.codename = codename;
     }
 
     public String getDescription(String codeName){

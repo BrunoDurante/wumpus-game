@@ -18,25 +18,26 @@ public class Cave {
         cave[line][column] += element;
     }
 
+    public static void removeElementBoard(int line, int column, String element) {
+        cave[line][column] = cave[line][column].replace(element, " ");
+    }
+
     public static boolean checkLimits(int value) {
         return value >= 0 && value < 4;
     }
 
-    /* somando 1 pois com walk se anda 1 casa.
-     * obs: Se destino < 0 ou > 3, foge das limitacoes do mapa [4,4].
-     */
     public static boolean isWall(int linePosition, int columnPosition, Integer direction) {
-        if (direction.equals(Directions.NORTH.valueOnBoard)) {
-            return checkLimits(linePosition - 1);
+        if (direction.equals(Directions.NORTH.getValue())) {
+            return !checkLimits(linePosition - 1);
         }
-        if (direction.equals(Directions.EAST.valueOnBoard)) {
-            return checkLimits(columnPosition + 1);
+        if (direction.equals(Directions.EAST.getValue())) {
+            return !checkLimits(columnPosition + 1);
         }
-        if (direction.equals(Directions.SOUTH.valueOnBoard)) {
-            return checkLimits(linePosition + 1);
+        if (direction.equals(Directions.SOUTH.getValue())) {
+            return !checkLimits(linePosition + 1);
         }
-        if (direction.equals(Directions.WEST.valueOnBoard)) {
-            return checkLimits(columnPosition - 1);
+        if (direction.equals(Directions.WEST.getValue())) {
+            return !checkLimits(columnPosition - 1);
         }
         return false;
     }
@@ -62,29 +63,7 @@ public class Cave {
             }
             caveBoard += "\n";
         }
-
         return caveBoard;
-
     }
-
-    public String getDirectionToString(int direction){
-        switch (direction){
-            case 0:{
-                return Directions.NORTH.name();
-            }
-            case 1:{
-                return Directions.EAST.name();
-            }
-            case 2:{
-                return Directions.SOUTH.name();
-            }
-            case 3:{
-                return Directions.WEST.name();
-            }
-            default:
-                return "Not found";
-        }
-    }
-
 
 }

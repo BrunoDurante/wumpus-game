@@ -25,6 +25,10 @@ public abstract class Entity {
         Cave.setElementOnBoard(line, column, codename.toString());
     }
 
+    public void removeElement(){
+       Cave.removeElementBoard(line, column, codename.toString());
+    }
+
     public boolean exists(int lineCheck, int columnCheck) {
         if (line == lineCheck && column == columnCheck) {
             return true;

@@ -10,7 +10,6 @@ import refactoring.game.entities.main.Wumpus;
 import java.util.*;
 
 public class Config {
-    private Hero hero;
     private Wumpus wumpus;
 
     public Config() {
@@ -24,8 +23,8 @@ public class Config {
     }
 
     public String inputNameHero(Scanner sc) {
-        System.out.println("\n~ So... come on?\n");
-        System.out.print("> enter the Hero name...\n: ");
+        System.out.println("\n~ Let's start!");
+        System.out.print(">Enter the Hero name...\n: ");
         return sc.nextLine();
     }
 
@@ -57,10 +56,10 @@ public class Config {
 
     public void showStatus(Hero hero) {
         System.out.println("\n> Game status");
-        System.out.println("Has an arrow? " + hero.hasArrow());
+        System.out.println("Has arrow? " + hero.hasArrow());
         System.out.println("Is wumpus alive? " + wumpus.isAlive());
-        System.out.println("Your position on the board: " + "[" + hero.getPositionToString() + "]");
-        System.out.println("Your current direction: " + hero.getDirection());
+        System.out.println("Your position on the board: " + "[" + hero.getPositionFormatted() + "]");
+        System.out.println("Your current direction: " + hero.getDirectionFormatted());
     }
 
     public void welcomeHero(String name) {
@@ -77,7 +76,7 @@ public class Config {
         this.wumpus = wumpus;
         wumpus.putEntityBoard(new Random(), gold);
 
-        Entity pit = new Pit();
+        Pit pit = new Pit();
         pit.putEntityBoard(new Random(), gold, wumpus);
 
         Map<String, Entity> mapEntities = new HashMap<>();

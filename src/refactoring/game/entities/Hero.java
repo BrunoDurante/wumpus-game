@@ -7,7 +7,7 @@ import java.util.Random;
 
 
 public class Hero extends Entity {
-    private String name;
+    private final String name;
     private boolean arrow;
     private boolean alive;
     private int direction;
@@ -18,13 +18,37 @@ public class Hero extends Entity {
         setPosition(3, 0);
         arrow = true;
         alive = true;
-        direction = Directions.EAST.valueOnBoard;
+        direction = Directions.EAST.getValue();
         this.name = name;
         command = new HeroActions();
     }
 
     public void walk() {
-        command.walk(line, column, direction);
+        if (command.walk(this)) {
+            updatePosition();
+        }
+    }
+
+    private void updatePosition() {
+        removeElement();
+        switch (direction) {
+            case 0: {
+                setPosition(getLinePosition() - 1, getColumnPosition());
+                break;
+            }
+            case 1: {
+                setPosition(getLinePosition(), getColumnPosition() + 1);
+                break;
+            }
+            case 2: {
+                setPosition(getLinePosition() + 1, getColumnPosition());
+                break;
+            }
+            case 3: {
+                setPosition(getLinePosition(), getColumnPosition() - 1);
+                break;
+            }
+        }
     }
 
     public void turnRight() {
@@ -58,32 +82,33 @@ public class Hero extends Entity {
         return direction;
     }
 
-//    public String getDirectionToString(){
-//        return Cave.getDirection(direction);
-//    }
+    public String getDirectionFormatted() {
+        return Directions.getDirectionName(direction);
+    }
 
-    public String getPositionToString() {
-        String column = "";
-        switch (this.column) {
+    public String getPositionFormatted() {
+        String columnStr = "";
+        switch (column) {
             case 0: {
-                column = "A";
+                columnStr = "A";
                 break;
             }
             case 1: {
-                column = "B";
+                columnStr = "B";
                 break;
             }
             case 2: {
-                column = "C";
+                columnStr = "C";
                 break;
             }
             case 3: {
-                column = "D";
+                columnStr = "D";
                 break;
             }
         }
-        return line + "," + column;
+        return line + "," + columnStr;
     }
+
 
     @Override
     public void putEntityBoard(Random random, Entity... entities) {

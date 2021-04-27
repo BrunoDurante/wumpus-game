@@ -3,17 +3,19 @@ package refactoring.game.commands;
 import refactoring.game.Directions;
 import refactoring.game.entities.Cave;
 import refactoring.game.entities.Entity;
+import refactoring.game.entities.Hero;
 import refactoring.game.entities.main.Wumpus;
 
 import static refactoring.game.entities.Cave.*;
 
 public class HeroActions {
 
-    public void walk(int linePosition, int columnPosition, int direction) {
-        if (Cave.isWall(linePosition, columnPosition, direction)) {
+    public boolean walk(Hero hero) {
+        if (Cave.isWall(hero.getLinePosition(), hero.getColumnPosition(), hero.getDirection())) {
             System.out.println("~ You hit the wall.");
+            return false;
         } else {
-            Cave.setElementOnBoard(linePosition, columnPosition, "H");
+            return true;
         }
     }
 
@@ -41,10 +43,10 @@ public class HeroActions {
     }
 
     public int turnRight(int direction) {
-        return (direction + 1) > 3 ? Directions.NORTH.valueOnBoard : direction;
+        return (direction + 1) > 3 ? Directions.NORTH.getValue() : ++direction % 4;
     }
 
     public int turnLeft(int direction) {
-        return (direction - 1) < 0 ? Directions.WEST.valueOnBoard : direction;
+        return (direction != 0) ? --direction % 4 : Directions.WEST.getValue();
     }
 }

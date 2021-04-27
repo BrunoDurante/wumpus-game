@@ -10,61 +10,71 @@ import java.util.Scanner;
 
 public class Game {
     public static boolean gaming = true;
+    public static Scanner sc;
 
     // colocar um thread sleep nas mensagens do game para o jogador, simulando games de rpg.
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        sc = new Scanner(System.in);
 
         Config config = new Config();
         config.showIntro();
-
 
         Cave.createCave();
         Hero hero = new Hero(config.inputNameHero(sc));
 
         config.welcomeHero(hero.getName());
 
-        Map<String, Entity> entities = config.prepareGame();
+        Map<String, Entity> mapEntities = config.prepareGame();
+        mapEntities.put("hero", hero);
         config.showBoard();
         config.showRules();
         config.showStatus(hero);
 
         while (gaming) {
-            System.out.print("Your action is...\n:");
-            switch (sc.next()) {
-                case "walk": {
-                    hero.walk();
-                    break;
-                }
-                case "turn left": {
-                    hero.turnLeft();
-                    break;
-                }
-                case "turn right": {
-                    hero.turnRight();
-                    break;
-                }
-                case "shoot": {
-                    hero.shoot(entities.get("wumpus"));
-                    break;
-                }
-                case "hack board": {
-//                    config.showBoardElements();
-                }
-                default: {
-                    System.out.println("~ Unknown command, please type again.\n");
-                    break;
-                }
+            round(sc, mapEntities, hero, config);
+            config.showBoard();
+            if (endGame()) {
+                gaming = false;
+                sc.close();
+//               Mensagens de término de jogo
             }
         }
 
-        //checar e passar um status do que ocorreu na rodada
-        //para inserir infos na tela, passar hero como parâmetro
-        //verificar fim do jogo
-        sc.close();
-
     }
 
+    public static void round(Scanner sc, Map<String, Entity> mapEntities, Hero hero, Config config) {
+        System.out.print("\nType your action...\n:");
+        switch (sc.nextLine().toLowerCase()) {
+            case "walk": {
+                hero.walk();
+                break;
+            }
+            case "turn left": {
+                hero.turnLeft();
+                break;
+            }
+            case "turn right": {
+                hero.turnRight();
+                break;
+            }
+            case "shoot": {
+                hero.shoot(mapEntities.get("wumpus"));
+                break;
+            }
+            case "status":{
+                config.showStatus(hero);
+                break;
+            }
+            default: {
+                System.out.println("> Unknown command, please type again.\n");
+                break;
+            }
+        }
+    }
 
+    //verificar fim do jogo
+    public static Boolean endGame() {
+        return false;
+    }
 }
