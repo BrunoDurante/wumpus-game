@@ -12,10 +12,15 @@ public class Hero extends Entity {
     private boolean alive;
     private int direction;
     private HeroActions command;
+    public Boolean[][] visitedPlace;
+
 
     public Hero(String name) {
         super(Codename.H);
+        visitedPlace = new Boolean[4][4];
         setPosition(3, 0);
+        initializeVisitedPlace();
+        visitedPlace[3][0] = true;
         arrow = true;
         alive = true;
         direction = Directions.EAST.getValue();
@@ -26,6 +31,7 @@ public class Hero extends Entity {
     public void walk() {
         if (command.walk(this)) {
             updatePosition();
+            setVisitedPlace();
         }
     }
 
@@ -109,6 +115,21 @@ public class Hero extends Entity {
         return line + "," + columnStr;
     }
 
+    private void initializeVisitedPlace() {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                visitedPlace[i][j] = false;
+            }
+        }
+    }
+
+    public void setVisitedPlace() {
+        visitedPlace[getLinePosition()][getColumnPosition()] = true;
+    }
+
+    public Boolean wasVisited(int lineX, int columnY) {
+        return visitedPlace[lineX][columnY];
+    }
 
     @Override
     public void putEntityBoard(Random random, Entity... entities) {

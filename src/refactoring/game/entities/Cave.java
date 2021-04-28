@@ -42,28 +42,34 @@ public class Cave {
         return false;
     }
 
-    public static String getCaveBoard() {
+    public static String getCaveBoard(Hero hero) {
         int length = 0;
-        String caveBoard = "";
+        StringBuilder caveBoard = new StringBuilder();
 
-        caveBoard += "         (A) (B) (C) (D)\n";
+        caveBoard.append("         (A) (B) (C) (D)\n");
         for (int i = 0; i < 4; i++) {
-            caveBoard += "   (" + i + ")  |";
+            caveBoard.append("   (").append(i).append(")  |");
             for (int j = 0; j < 4; j++) {
-                length = String.valueOf(cave[i][j]).length();
-                if (length == 1) {
-                    caveBoard += "  " + cave[i][j] + "|";
-                } else if (length == 2) {
-                    caveBoard += " " + cave[i][j] + "|";
-                } else if (length == 0) {
-                    caveBoard += "   " + "|";
+
+                if (hero.wasVisited(i, j)) {
+                    length = String.valueOf(cave[i][j]).length();
+                    if (length == 1) {
+                        caveBoard.append("  ").append(cave[i][j]).append("|");
+                    } else if (length == 2) {
+                        caveBoard.append(" ").append(cave[i][j]).append("|");
+                    } else if (length == 0) {
+                        caveBoard.append("   " + "|");
+                    } else {
+                        caveBoard.append(cave[i][j]).append("|");
+                    }
                 } else {
-                    caveBoard += cave[i][j] + "|";
+                    caveBoard.append("   ").append("|");
                 }
+
             }
-            caveBoard += "\n";
+            caveBoard.append("\n");
         }
-        return caveBoard;
+        return caveBoard.toString();
     }
 
 }

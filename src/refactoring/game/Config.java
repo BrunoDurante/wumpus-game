@@ -50,8 +50,8 @@ public class Config {
 
     }
 
-    public void showBoard() {
-        System.out.println(Cave.getCaveBoard());
+    public void showBoard(Hero hero) {
+        System.out.println(Cave.getCaveBoard(hero));
     }
 
     public void showStatus(Hero hero) {

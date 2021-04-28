@@ -8,6 +8,13 @@ import refactoring.game.entities.main.Wumpus;
 import java.util.Map;
 import java.util.Scanner;
 
+//TODO
+/** > Deixar visível na posição apenas quando o herói passar por ela. OK
+ *  > Implementar condição de vitória
+ *  > Implementar condição de derrota
+ *  > Ajustar disposição dos elementos no board (brisa e buraco estão aparecendo na mesma posição)
+ */
+
 public class Game {
     public static boolean gaming = true;
     public static Scanner sc;
@@ -27,13 +34,13 @@ public class Game {
 
         Map<String, Entity> mapEntities = config.prepareGame();
         mapEntities.put("hero", hero);
-        config.showBoard();
+        config.showBoard(hero);
         config.showRules();
         config.showStatus(hero);
 
         while (gaming) {
             round(sc, mapEntities, hero, config);
-            config.showBoard();
+            config.showBoard(hero);
             if (endGame()) {
                 gaming = false;
                 sc.close();
