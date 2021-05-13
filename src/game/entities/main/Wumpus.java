@@ -1,9 +1,9 @@
-package refactoring.game.entities.main;
+package game.entities.main;
 
-import refactoring.game.entities.Codename;
-import refactoring.game.entities.Entity;
-import refactoring.game.entities.sensor.Sensor;
-import refactoring.game.entities.sensor.Stinck;
+import game.entities.Codename;
+import game.entities.sensor.Stinck;
+import game.entities.Entity;
+import game.entities.sensor.Sensor;
 
 import java.util.Random;
 

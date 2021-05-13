@@ -1,18 +1,17 @@
-package refactoring.game;
+package game;
 
-import refactoring.game.entities.Cave;
-import refactoring.game.entities.Entity;
-import refactoring.game.entities.Hero;
-import refactoring.game.entities.main.Wumpus;
+import game.entities.Cave;
+import game.entities.Hero;
+import game.entities.main.Wumpus;
+import game.entities.Entity;
 
 import java.util.Map;
 import java.util.Scanner;
 
 //TODO
-/** > Deixar visível na posição apenas quando o herói passar por ela. OK
- *  > Implementar condição de vitória
- *  > Implementar condição de derrota
- *  > Ajustar disposição dos elementos no board (brisa e buraco estão aparecendo na mesma posição)
+/**
+ * > Ajustar disposição dos elementos no board (brisa e buraco estão aparecendo na mesma posição)
+ * > Incluir mensagem dos sensores no console.
  */
 
 public class Game {
@@ -41,8 +40,9 @@ public class Game {
         while (gaming) {
             round(sc, mapEntities, hero, config);
             config.showBoard(hero);
-            if (endGame()) {
+            if (endGame(mapEntities)) {
                 gaming = false;
+                System.out.println("FIMMMMM");
                 sc.close();
 //               Mensagens de término de jogo
             }
@@ -66,10 +66,10 @@ public class Game {
                 break;
             }
             case "shoot": {
-                hero.shoot(mapEntities.get("wumpus"));
+                hero.shoot((Wumpus) mapEntities.get("wumpus"));
                 break;
             }
-            case "status":{
+            case "status": {
                 config.showStatus(hero);
                 break;
             }
@@ -81,7 +81,7 @@ public class Game {
     }
 
     //verificar fim do jogo
-    public static Boolean endGame() {
-        return false;
+    public static Boolean endGame(Map mapEntities) {
+        return Checking.lose(mapEntities) || Checking.win(mapEntities);
     }
 }

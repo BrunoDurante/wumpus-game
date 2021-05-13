@@ -1,7 +1,8 @@
-package refactoring.game.entities;
+package game.entities;
 
-import refactoring.game.Directions;
-import refactoring.game.commands.HeroActions;
+import game.commands.HeroActions;
+import game.Directions;
+import game.entities.main.Wumpus;
 
 import java.util.Random;
 
@@ -10,10 +11,9 @@ public class Hero extends Entity {
     private final String name;
     private boolean arrow;
     private boolean alive;
-    private int direction;
+    private Directions direction;
     private HeroActions command;
     public Boolean[][] visitedPlace;
-
 
     public Hero(String name) {
         super(Codename.H);
@@ -23,7 +23,7 @@ public class Hero extends Entity {
         visitedPlace[3][0] = true;
         arrow = true;
         alive = true;
-        direction = Directions.EAST.getValue();
+        direction = Directions.EAST;
         this.name = name;
         command = new HeroActions();
     }
@@ -35,9 +35,10 @@ public class Hero extends Entity {
         }
     }
 
+
     private void updatePosition() {
         removeElement();
-        switch (direction) {
+        switch (direction.getValue()) {
             case 0: {
                 setPosition(getLinePosition() - 1, getColumnPosition());
                 break;
@@ -58,14 +59,14 @@ public class Hero extends Entity {
     }
 
     public void turnRight() {
-        direction = command.turnRight(direction);
+        direction = command.turnRight(direction.getValue());
     }
 
     public void turnLeft() {
-        direction = command.turnLeft(direction);
+        direction = command.turnLeft(direction.getValue());
     }
 
-    public void shoot(Entity wumpus) {
+    public void shoot(Wumpus wumpus) {
         if (arrow) {
             command.shoot(wumpus, direction, line, column);
             arrow = false;
@@ -85,11 +86,11 @@ public class Hero extends Entity {
     }
 
     public int getDirection() {
-        return direction;
+        return direction.getValue();
     }
 
     public String getDirectionFormatted() {
-        return Directions.getDirectionName(direction);
+        return Directions.getDirectionName(direction.getValue());
     }
 
     public String getPositionFormatted() {

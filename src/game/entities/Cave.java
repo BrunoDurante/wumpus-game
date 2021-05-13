@@ -1,6 +1,6 @@
-package refactoring.game.entities;
+package game.entities;
 
-import refactoring.game.Directions;
+import game.Directions;
 
 public class Cave {
 
@@ -46,7 +46,7 @@ public class Cave {
         int length = 0;
         StringBuilder caveBoard = new StringBuilder();
 
-        caveBoard.append("         (A) (B) (C) (D)\n");
+        caveBoard.append("         (A)  (B)  (C)  (D)\n");
         for (int i = 0; i < 4; i++) {
             caveBoard.append("   (").append(i).append(")  |");
             for (int j = 0; j < 4; j++) {
@@ -54,16 +54,16 @@ public class Cave {
                 if (hero.wasVisited(i, j)) {
                     length = String.valueOf(cave[i][j]).length();
                     if (length == 1) {
-                        caveBoard.append("  ").append(cave[i][j]).append("|");
+                        caveBoard.append("   ").append(cave[i][j]).append("|");
                     } else if (length == 2) {
-                        caveBoard.append(" ").append(cave[i][j]).append("|");
+                        caveBoard.append("  ").append(cave[i][j]).append("|");
                     } else if (length == 0) {
-                        caveBoard.append("   " + "|");
+                        caveBoard.append("    " + "|");
                     } else {
-                        caveBoard.append(cave[i][j]).append("|");
+                        caveBoard.append(" ").append(cave[i][j]).append("|");
                     }
                 } else {
-                    caveBoard.append("   ").append("|");
+                    caveBoard.append("    ").append("|");
                 }
 
             }

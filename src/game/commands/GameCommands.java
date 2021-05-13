@@ -1,4 +1,4 @@
-package refactoring.game.commands;
+package game.commands;
 
 public class GameCommands {
     public void hackGame() {

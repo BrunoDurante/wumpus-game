@@ -1,11 +1,11 @@
-package refactoring.game;
+package game;
 
-import refactoring.game.entities.Cave;
-import refactoring.game.entities.Entity;
-import refactoring.game.entities.Hero;
-import refactoring.game.entities.main.Gold;
-import refactoring.game.entities.main.Pit;
-import refactoring.game.entities.main.Wumpus;
+import game.entities.Cave;
+import game.entities.Entity;
+import game.entities.Hero;
+import game.entities.main.Gold;
+import game.entities.main.Pit;
+import game.entities.main.Wumpus;
 
 import java.util.*;
 

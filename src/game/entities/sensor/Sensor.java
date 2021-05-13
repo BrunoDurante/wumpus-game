@@ -1,8 +1,7 @@
-package refactoring.game.entities.sensor;
+package game.entities.sensor;
 
-import refactoring.game.entities.Cave;
-import refactoring.game.entities.Codename;
-import refactoring.game.entities.Entity;
+import game.entities.Cave;
+import game.entities.Codename;
 
 public abstract class Sensor{
     public int line;

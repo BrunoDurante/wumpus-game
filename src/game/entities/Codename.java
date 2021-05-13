@@ -1,4 +1,4 @@
-package refactoring.game.entities;
+package game.entities;
 
 public enum Codename {
     G("Gold"),

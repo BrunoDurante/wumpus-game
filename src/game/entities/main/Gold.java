@@ -1,13 +1,12 @@
-package refactoring.game.entities.main;
+package game.entities.main;
 
-import refactoring.game.entities.Codename;
-import refactoring.game.entities.Entity;
-import refactoring.game.entities.sensor.Light;
-import refactoring.game.entities.sensor.Sensor;
+import game.entities.Cave;
+import game.entities.Codename;
+import game.entities.Entity;
+import game.entities.sensor.Light;
+import game.entities.sensor.Sensor;
 
 import java.util.Random;
-
-import static refactoring.game.entities.Cave.checkLimits;
 
 public class Gold extends Entity {
 
@@ -67,28 +66,28 @@ public class Gold extends Entity {
 
     private boolean checkCellsAround(int destinationLine, int destinationColumn, Wumpus wumpus, Pit pit) {
         //Above gold
-        if (checkLimits(line - 1)) {
+        if (Cave.checkLimits(line - 1)) {
             if (isEmpty(line - 1, destinationColumn, wumpus, pit)) {
                 return true;
             }
         }
 
         //Below gold
-        if (checkLimits(line + 1)) {
+        if (Cave.checkLimits(line + 1)) {
             if (isEmpty(line + 1, destinationColumn, wumpus, pit)) {
                 return true;
             }
         }
 
         //Gold right
-        if (checkLimits(column + 1)) {
+        if (Cave.checkLimits(column + 1)) {
             if (isEmpty(destinationLine, column + 1, wumpus, pit)) {
                 return true;
             }
         }
 
         //Gold left
-        if (checkLimits(column - 1)) {
+        if (Cave.checkLimits(column - 1)) {
             if (isEmpty(destinationLine, column - 1, wumpus, pit)) {
                 return true;
             }

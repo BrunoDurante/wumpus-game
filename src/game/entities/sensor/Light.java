@@ -1,6 +1,6 @@
-package refactoring.game.entities.sensor;
+package game.entities.sensor;
 
-import refactoring.game.entities.Codename;
+import game.entities.Codename;
 
 public class Light extends Sensor {
 
