@@ -1,5 +1,6 @@
 package game;
 
+import game.entities.Entity;
 import game.entities.Hero;
 import game.entities.main.Gold;
 import game.entities.main.Pit;
@@ -8,7 +9,8 @@ import game.entities.main.Wumpus;
 import java.util.Map;
 
 public class Checking {
-    public static boolean win(Map mapEntities) {
+
+    public static boolean win(Map<String, Entity> mapEntities) {
         Wumpus wumpus = (Wumpus) mapEntities.get("wumpus");
         Hero hero = (Hero) mapEntities.get("hero");
         Gold gold = (Gold) mapEntities.get("gold");
@@ -29,16 +31,16 @@ public class Checking {
         return hero.getLinePosition() == gold.getLinePosition() && hero.getColumnPosition() == gold.getColumnPosition();
     }
 
-    public static boolean lose(Map mapEntities) {
+    public static boolean lose(Map<String, Entity> mapEntities) {
         Hero hero = (Hero) mapEntities.get("hero");
         Pit pit = (Pit) mapEntities.get("pit");
         Wumpus wumpus = (Wumpus) mapEntities.get("wumpus");
 
-        if (fallPit(hero, pit)){
+        if (fallPit(hero, pit)) {
             System.out.println("So bad, you lost! You fell in the pit...");
             return true;
         }
-        if (foundWumpus(hero, wumpus)){
+        if (foundWumpus(hero, wumpus)) {
             System.out.println("So bad, you lost! Wumpus killed you...");
         }
         return false;
@@ -48,6 +50,7 @@ public class Checking {
         return hero.getLinePosition() == wumpus.getLinePosition() && hero.getColumnPosition() == wumpus.getColumnPosition();
     }
 
+    //Utilizado 3 como parâmetro, pois são distribuídos apenas 3 Pits no tabuleiro.
     private static boolean fallPit(Hero hero, Pit pit) {
         int[][] positions = pit.getPositions();
         for (int index = 0; index < 3; index++) {

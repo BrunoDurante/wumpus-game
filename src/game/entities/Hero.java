@@ -6,11 +6,9 @@ import game.entities.main.Wumpus;
 
 import java.util.Random;
 
-
 public class Hero extends Entity {
     private final String name;
     private boolean arrow;
-    private boolean alive;
     private Directions direction;
     private HeroActions command;
     public Boolean[][] visitedPlace;
@@ -22,7 +20,6 @@ public class Hero extends Entity {
         initializeVisitedPlace();
         visitedPlace[3][0] = true;
         arrow = true;
-        alive = true;
         direction = Directions.EAST;
         this.name = name;
         command = new HeroActions();
@@ -81,10 +78,6 @@ public class Hero extends Entity {
         return arrow;
     }
 
-    public boolean isAlive() {
-        return alive;
-    }
-
     public int getDirection() {
         return direction.getValue();
     }
@@ -128,8 +121,8 @@ public class Hero extends Entity {
         visitedPlace[getLinePosition()][getColumnPosition()] = true;
     }
 
-    public Boolean wasVisited(int lineX, int columnY) {
-        return visitedPlace[lineX][columnY];
+    public Boolean wasVisited(int line, int column) {
+        return visitedPlace[line][column];
     }
 
     @Override

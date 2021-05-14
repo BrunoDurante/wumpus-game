@@ -16,23 +16,28 @@ public class Config {
     }
 
     public void showRules() {
-        System.out.println("~ To walk through the cave type \"walk\".\n"
+        System.out.println("Game Conditions\n" +
+                "~ You win if you find the gold or hit the Wumpus with an arrow.\n" +
+                "~ You lose if you fall into the pit or if you are in the same position as Wumpus.");
+        System.out.println("Commands\n" +
+                "~ To walk through the cave type \"walk\".\n"
                 + "~ To turn right, type \"turnR\".\n"
                 + "~ To turn left, type \"turnL\". \n"
-                + "~ To shoot type \"shoot\".");
+                + "~ To shoot type \"shoot\".\n");
     }
 
-    public String inputNameHero(Scanner sc) {
+    public String inputNameHero() {
         System.out.println("\n~ Let's start!");
-        System.out.print(">Enter the Hero name...\n: ");
-        return sc.nextLine();
+        System.out.print("> Enter the Hero name...\n: ");
+
+        return Game.sc.nextLine();
     }
 
     public void showIntro() {
         System.out.println("----------------------------------------------------------");
         System.out.println("--------- Welcome to WUMPUS WORLD GAME (remake) ----------");
         System.out.println("----------------------------------------------------------");
-        System.out.println("A reinterpretation of the original game Wumpus Wolrd.\n");
+        System.out.println("A reinterpretation of the original Wumpus World game.\n");
 
         System.out.println("                    >>> Rules <<<                         ");
         System.out.println("It's simple... walk through the cave until you find the \ngold or hit the wumpus with a sharp arrow.");
@@ -51,20 +56,19 @@ public class Config {
     }
 
     public void showBoard(Hero hero) {
-        System.out.println(Cave.getCaveBoard(hero));
+        System.out.println("\n" + Cave.getCaveBoard(hero));
     }
 
     public void showStatus(Hero hero) {
-        System.out.println("\n> Game status");
-        System.out.println("Has arrow? " + hero.hasArrow());
-        System.out.println("Is wumpus alive? " + wumpus.isAlive());
-        System.out.println("Your position on the board: " + "[" + hero.getPositionFormatted() + "]");
+        System.out.println("> Game status");
+        System.out.println("Your position on the board: [" + hero.getPositionFormatted() + "]");
         System.out.println("Your current direction: " + hero.getDirectionFormatted());
+        System.out.println("Has arrow? " + hero.hasArrow());
+        System.out.println("Is Wumpus alive? " + wumpus.isAlive());
     }
 
     public void welcomeHero(String name) {
-        System.out.println("\n~ Welcome " + name + "!");
-        System.out.println("~ This is the cave...\n");
+        System.out.println("\n~ Welcome " + name + "! This is the cave...");
 
     }
 

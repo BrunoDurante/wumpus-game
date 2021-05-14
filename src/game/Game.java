@@ -12,56 +12,79 @@ import java.util.Scanner;
 /**
  * > Ajustar disposição dos elementos no board (brisa e buraco estão aparecendo na mesma posição)
  * > Incluir mensagem dos sensores no console.
+ * > Documentar o projeto
  */
 
 public class Game {
     public static boolean gaming = true;
     public static Scanner sc;
+    private static Map<String, Entity> mapEntities;
+    private static Config config;
 
     // colocar um thread sleep nas mensagens do game para o jogador, simulando games de rpg.
 
     public static void main(String[] args) {
         sc = new Scanner(System.in);
+        config = new Config();
 
-        Config config = new Config();
         config.showIntro();
-
         Cave.createCave();
-        Hero hero = new Hero(config.inputNameHero(sc));
+        Hero hero = new Hero(config.inputNameHero());
 
         config.welcomeHero(hero.getName());
 
-        Map<String, Entity> mapEntities = config.prepareGame();
+        mapEntities = config.prepareGame();
         mapEntities.put("hero", hero);
+
+        pausarConsole(3);
         config.showBoard(hero);
+        pausarConsole(5);
         config.showRules();
+        pausarConsole(10);
+
         config.showStatus(hero);
+        pausarConsole(5);
 
         while (gaming) {
-            round(sc, mapEntities, hero, config);
+            round(hero);
+
             config.showBoard(hero);
-            if (endGame(mapEntities)) {
+            config.showStatus(hero);
+            if (endGame()) {
                 gaming = false;
                 System.out.println("FIMMMMM");
                 sc.close();
 //               Mensagens de término de jogo
             }
         }
-
     }
 
-    public static void round(Scanner sc, Map<String, Entity> mapEntities, Hero hero, Config config) {
+    private static void pausarConsole(int seconds){
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void round(Hero hero) {
         System.out.print("\nType your action...\n:");
         switch (sc.nextLine().toLowerCase()) {
             case "walk": {
                 hero.walk();
                 break;
             }
-            case "turn left": {
+            case "turn l":
+            case "turn left":
+            case "turnl":
+            case "turnleft": {
                 hero.turnLeft();
                 break;
             }
-            case "turn right": {
+            case "turn r":
+            case "turn right":
+            case "turnr":
+            case "turnright": {
                 hero.turnRight();
                 break;
             }
@@ -81,7 +104,7 @@ public class Game {
     }
 
     //verificar fim do jogo
-    public static Boolean endGame(Map mapEntities) {
+    public static Boolean endGame() {
         return Checking.lose(mapEntities) || Checking.win(mapEntities);
     }
 }
