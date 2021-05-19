@@ -4,12 +4,12 @@ import game.entities.Codename;
 
 public class Breeze extends Sensor {
 
-    public Breeze(int linePositionEntity, int columnPositionEntity) {
-        super(linePositionEntity, columnPositionEntity, Codename.B);
+    public Breeze() {
+        super(Codename.B);
     }
 
-    @Override
-    protected String getResponse() {
-        return "Breeze";
+    public static void getResponse() {
+        System.out.println("\n~ What's that breeze? There must be a pit nearby.");
     }
+
 }

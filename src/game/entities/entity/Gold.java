@@ -1,8 +1,7 @@
-package game.entities.main;
+package game.entities.entity;
 
 import game.entities.Cave;
 import game.entities.Codename;
-import game.entities.Entity;
 import game.entities.sensor.Light;
 import game.entities.sensor.Sensor;
 
@@ -10,8 +9,11 @@ import java.util.Random;
 
 public class Gold extends Entity {
 
+    private Sensor light;
+
     public Gold() {
         super(Codename.G);
+        light = new Light();
     }
 
     @Override
@@ -29,8 +31,7 @@ public class Gold extends Entity {
 
     @Override
     public void putSensor(int linePositionEntity, int columnPositionEntity) {
-        Sensor light = new Light(linePositionEntity, columnPositionEntity);
-        light.setSensorAroundElement();
+        light.setSensorAroundElement(linePositionEntity, columnPositionEntity);
     }
 
     /**
@@ -50,20 +51,27 @@ public class Gold extends Entity {
      * | | | | |
      * </pre>
      * No caso acima, o acesso ao 'gold'(G) é impossível, visto que as células ao redor estão preenchidas com elementos
-     * que fazem o jogador perder o game, caso acessá-las.
+     * que fazem o jogador perder o jogo caso acessá-las.
      *
-     * @param destinationLine linha destino na matriz do tabuleiro.
+     * @param destinationLine   linha destino na matriz do tabuleiro.
      * @param destinationColumn coluna destino na matriz do tabuleiro.
-     * @param wumpus instância do wumpus gerado no jogo.
-     * @param pit instância dos buracos gerados no jogo.
-     *
+     * @param wumpus            instância do wumpus gerado no jogo.
+     * @param pit               instância dos buracos gerados no jogo.
      * @return true ou false
      */
-
     public boolean canBeBlocked(int destinationLine, int destinationColumn, Wumpus wumpus, Pit pit) {
         return !(checkCellsAround(destinationLine, destinationColumn, wumpus, pit));
     }
 
+    /**
+     * Checa se as células ao redor de Gold estão disponíveis.
+     *
+     * @param destinationLine   linha destino.
+     * @param destinationColumn coluna destino.
+     * @param wumpus            instância de Wumpus.
+     * @param pit               instância de Pit.
+     * @return true se a alguma célula ao redor de Gold estiver disponível, false se não.
+     */
     private boolean checkCellsAround(int destinationLine, int destinationColumn, Wumpus wumpus, Pit pit) {
         //Above gold
         if (Cave.checkLimits(line - 1)) {
@@ -95,10 +103,20 @@ public class Gold extends Entity {
         return false;
     }
 
-
+    /**
+     * Checa se a posição possui Wumpus ou Pit.
+     *
+     * @param line   linha a ser checada.
+     * @param column coluna a ser checada.
+     * @param wumpus instância do Wumpus.
+     * @param pit    instância do Pit.
+     * @return true se a posição estiver disponível, false se não.
+     */
     private boolean isEmpty(int line, int column, Wumpus wumpus, Pit pit) {
         return !(wumpus.exists(line, column) || pit.exists(line, column));
     }
 
-
+    public Sensor getLight() {
+        return light;
+    }
 }

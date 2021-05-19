@@ -1,11 +1,11 @@
 package game;
 
 import game.entities.Cave;
-import game.entities.Entity;
-import game.entities.Hero;
-import game.entities.main.Gold;
-import game.entities.main.Pit;
-import game.entities.main.Wumpus;
+import game.entities.entity.Entity;
+import game.entities.entity.hero.Hero;
+import game.entities.entity.Gold;
+import game.entities.entity.Pit;
+import game.entities.entity.Wumpus;
 
 import java.util.*;
 
@@ -62,18 +62,18 @@ public class Config {
     public void showStatus(Hero hero) {
         System.out.println("> Game status");
         System.out.println("Your position on the board: [" + hero.getPositionFormatted() + "]");
-        System.out.println("Your current direction: " + hero.getDirectionFormatted());
+        System.out.println("Your current direction: " + hero.getDirection().name());
         System.out.println("Has arrow? " + hero.hasArrow());
         System.out.println("Is Wumpus alive? " + wumpus.isAlive());
     }
 
-    public void welcomeHero(String name) {
+    public void welcome(String name) {
         System.out.println("\n~ Welcome " + name + "! This is the cave...");
 
     }
 
     public Map<String, Entity> prepareGame() {
-        Entity gold = new Gold();
+        Gold gold = new Gold();
         gold.putEntityBoard(new Random(), null);
 
         Wumpus wumpus = new Wumpus();
@@ -91,4 +91,11 @@ public class Config {
         return mapEntities;
     }
 
+    public void end(String name) {
+        System.out.println("Thanks for trying it out, " + name + "! To play again, click 'run' in your IDE.");
+    }
+
+    public void showSensor(Map mapEntities) {
+        Checking.hasSensor(mapEntities);
+    }
 }

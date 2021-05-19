@@ -1,4 +1,4 @@
-package game;
+package game.entities;
 
 public enum Directions {
     NORTH(0),
@@ -32,28 +32,5 @@ public enum Directions {
             }
         }
         return null;
-    }
-
-    public String getName() {
-        return name();
-    }
-
-    public static String getDirectionName(int value) {
-        switch (value) {
-            case 0: {
-                return Directions.NORTH.name();
-            }
-            case 1: {
-                return Directions.EAST.name();
-            }
-            case 2: {
-                return Directions.SOUTH.name();
-            }
-            case 3: {
-                return Directions.WEST.name();
-            }
-            default:
-                return "Not found";
-        }
     }
 }

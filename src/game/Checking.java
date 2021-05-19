@@ -1,10 +1,13 @@
 package game;
 
-import game.entities.Entity;
-import game.entities.Hero;
-import game.entities.main.Gold;
-import game.entities.main.Pit;
-import game.entities.main.Wumpus;
+import game.entities.entity.Entity;
+import game.entities.entity.hero.Hero;
+import game.entities.entity.Gold;
+import game.entities.entity.Pit;
+import game.entities.entity.Wumpus;
+import game.entities.sensor.Breeze;
+import game.entities.sensor.Light;
+import game.entities.sensor.Stinck;
 
 import java.util.Map;
 
@@ -50,13 +53,36 @@ public class Checking {
         return hero.getLinePosition() == wumpus.getLinePosition() && hero.getColumnPosition() == wumpus.getColumnPosition();
     }
 
-    //Utilizado 3 como parâmetro, pois são distribuídos apenas 3 Pits no tabuleiro.
     private static boolean fallPit(Hero hero, Pit pit) {
-        int[][] positions = pit.getPositions();
-        for (int index = 0; index < 3; index++) {
-            if (positions[index][0] == hero.getLinePosition() && positions[index][1] == hero.getColumnPosition())
-                return true;
-        }
-        return false;
+        return pit.getPositionList().stream().anyMatch(position -> position.getLine() == hero.getLinePosition() && position.getColumn() == hero.getColumnPosition());
     }
+
+    /**
+     * Responsável por trazer a mensagem dos sensores quando estiverem na mesma posição do herói.
+     * Lógica 'count#' feita para caso tiver dois sensores iguais na mesma posição, não trazer duas vezes a
+     * mesma mensagem.
+     * <p>
+     * Como cada posição da matriz é uma concatenação, utilizo toCharArray() para separar os elementos,
+     * e assim verificar se são os sensores, trazendo suas respectivas mensagens para o console.
+     * </p>
+     *
+     * @param mapEntities Map com as entidades geradas no início do jogo.
+     */
+    public static void hasSensor(Map<String, Entity> mapEntities) {
+        Pit pit = (Pit) mapEntities.get("pit");
+        Gold gold = (Gold) mapEntities.get("gold");
+        Wumpus wumpus = (Wumpus) mapEntities.get("wumpus");
+        Hero hero = (Hero) mapEntities.get("hero");
+
+        int line = hero.getLinePosition();
+        int column = hero.getColumnPosition();
+
+        if (pit.getBreeze().getPositionList().stream().anyMatch(position -> position.getLine() == line && position.getColumn() == column))
+            Breeze.getResponse();
+        if (gold.getLight().getPositionList().stream().anyMatch(position -> position.getLine() == line && position.getColumn() == column))
+            Light.getResponse();
+        if (wumpus.getStinck().getPositionList().stream().anyMatch(position -> position.getLine() == line && position.getColumn() == column))
+            Stinck.getResponse();
+    }
+
 }

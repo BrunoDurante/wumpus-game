@@ -1,6 +1,14 @@
 package game.entities;
 
-import game.Directions;
+import game.entities.entity.hero.Hero;
+import game.entities.sensor.Breeze;
+import game.entities.sensor.Light;
+import game.entities.sensor.Sensor;
+import game.entities.sensor.Stinck;
+
+import java.util.ArrayList;
+import java.util.IllegalFormatCodePointException;
+import java.util.List;
 
 public class Cave {
 
@@ -18,8 +26,8 @@ public class Cave {
         cave[line][column] += element;
     }
 
-    public static void removeElementBoard(int line, int column, String element) {
-        cave[line][column] = cave[line][column].replace(element, " ");
+    public static void removeElementBoard(int line, int column, Codename entity) {
+        cave[line][column] = cave[line][column].replace(entity.toString(), " ");
     }
 
     public static boolean checkLimits(int value) {
@@ -43,24 +51,24 @@ public class Cave {
     }
 
     public static String getCaveBoard(Hero hero) {
-        int length = 0;
         StringBuilder caveBoard = new StringBuilder();
-
         caveBoard.append("         (A)  (B)  (C)  (D)\n");
         for (int i = 0; i < 4; i++) {
             caveBoard.append("   (").append(i).append(")  |");
             for (int j = 0; j < 4; j++) {
 
                 if (hero.wasVisited(i, j)) {
-                    length = String.valueOf(cave[i][j]).length();
-                    if (length == 1) {
+                    int length = String.valueOf(cave[i][j]).length();
+                    if (length == 0) {
+                        caveBoard.append("    " + "|");
+                    } else if (length == 1) {
                         caveBoard.append("   ").append(cave[i][j]).append("|");
                     } else if (length == 2) {
                         caveBoard.append("  ").append(cave[i][j]).append("|");
-                    } else if (length == 0) {
-                        caveBoard.append("    " + "|");
-                    } else {
+                    } else if (length == 3) {
                         caveBoard.append(" ").append(cave[i][j]).append("|");
+                    } else {
+                        caveBoard.append(cave[i][j]).append("|");
                     }
                 } else {
                     caveBoard.append("    ").append("|");

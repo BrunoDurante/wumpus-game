@@ -1,18 +1,55 @@
-package game.commands;
+package game.entities.entity.hero;
 
-import game.Directions;
+import game.entities.Directions;
 import game.entities.Cave;
-import game.entities.Hero;
-import game.entities.main.Wumpus;
+import game.entities.entity.Wumpus;
+
 
 public class HeroActions {
 
+    /**
+     * Verifica se a posição futura do personagem é acessível.
+     *
+     * @param hero
+     * @return
+     */
     public boolean walk(Hero hero) {
-        if (Cave.isWall(hero.getLinePosition(), hero.getColumnPosition(), hero.getDirection())) {
+        if (Cave.isWall(hero.getLinePosition(), hero.getColumnPosition(), hero.getDirection().getValue())) {
             System.out.println("~ You hit the wall.");
             return false;
         } else {
+            updatePosition(hero);
             return true;
+        }
+    }
+
+    private void updatePosition(Hero hero) {
+        removeElementCurrentPosition(hero);
+        walkToNewPosition(hero);
+    }
+
+    private void removeElementCurrentPosition(Hero hero) {
+        Cave.removeElementBoard(hero.getLinePosition(), hero.getColumnPosition(), hero.getCodename());
+    }
+
+    private void walkToNewPosition(Hero hero) {
+        switch (hero.getDirection()) {
+            case NORTH: {
+                hero.setPosition(hero.getLinePosition() - 1, hero.getColumnPosition());
+                break;
+            }
+            case EAST: {
+                hero.setPosition(hero.getLinePosition(), hero.getColumnPosition() + 1);
+                break;
+            }
+            case SOUTH: {
+                hero.setPosition(hero.getLinePosition() + 1, hero.getColumnPosition());
+                break;
+            }
+            case WEST: {
+                hero.setPosition(hero.getLinePosition(), hero.getColumnPosition() - 1);
+                break;
+            }
         }
     }
 
@@ -41,7 +78,7 @@ public class HeroActions {
      * Posição do wumpus - [2,3]
      * Posição do herói - [2,0]
      * Direção do herói - EAST
-     *
+     * <p>
      * Ambos estão na mesma linha, e vemos que o Wumpus está a direita do herói, pois o valor da coluna é maior.
      * Com isso, se o herói atirar, acertará o wumpus, pois estão na mesma linha, e a direção do herói aponta para onde o wumpus se encontra.
      *

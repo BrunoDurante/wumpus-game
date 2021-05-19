@@ -1,8 +1,7 @@
-package game.entities.main;
+package game.entities.entity;
 
 import game.entities.Codename;
 import game.entities.sensor.Stinck;
-import game.entities.Entity;
 import game.entities.sensor.Sensor;
 
 import java.util.Random;
@@ -10,10 +9,12 @@ import java.util.Random;
 public class Wumpus extends Entity {
 
     private boolean alive;
+    private Sensor stinck;
 
     public Wumpus() {
         super(Codename.W);
         alive = true;
+        stinck = new Stinck();
     }
 
     public boolean isAlive() {
@@ -39,8 +40,11 @@ public class Wumpus extends Entity {
 
     @Override
     public void putSensor(int linePositionEntity, int columnPositionEntity) {
-        Sensor stinck = new Stinck(linePositionEntity, columnPositionEntity);
-        stinck.setSensorAroundElement();
+        stinck.setSensorAroundElement(linePositionEntity, columnPositionEntity);
+    }
+
+    public Sensor getStinck() {
+        return stinck;
     }
 
 }

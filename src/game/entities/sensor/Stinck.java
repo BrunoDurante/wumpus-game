@@ -4,12 +4,12 @@ import game.entities.Codename;
 
 public class Stinck extends Sensor {
 
-    public Stinck(int linePositionEntity, int columnPositionEntity) {
-        super(linePositionEntity, columnPositionEntity, Codename.S);
+    public Stinck() {
+        super(Codename.S);
     }
 
-    @Override
-    public String getResponse() {
-        return "Stinck";
+    public static void getResponse() {
+        System.out.println("\n~ Yuck!! What a stench! Wumpus must be around here.");
     }
+
 }
