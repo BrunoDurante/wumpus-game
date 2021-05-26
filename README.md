@@ -26,7 +26,6 @@ As seguintes tecnologias foram utilizadas na construção do projeto:
 - [Java](https://www.java.com/pt-BR/)
 - [IntelliJ](https://www.jetbrains.com/pt-br/idea/)
 - [Git](https://git-scm.com)
-<br>
 
 <h3>
 Como executar o Projeto
