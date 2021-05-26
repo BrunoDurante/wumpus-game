@@ -40,8 +40,8 @@ $ git clone https://github.com/BrunoDurante/wumpus-game.git
 <h4>
 🎲 Na IDE
 </h4>
-- Importe o projeto.
-- Execute o método main, localizado na classe Game.
+- Importe o projeto
+- Execute o método main, localizado na classe Game
 
 <h4>
 Informações do jogo
