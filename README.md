@@ -13,11 +13,11 @@ O projeto em questão é referente a uma entrega de trabalho acadêmico da facul
 <h3>
 Pré-requisitos
 </h3>
-
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [JDK 11](https://www.oracle.com/br/java/technologies/javase-jdk11-downloads.html). 
 Além disto é bom ter uma IDE para trabalhar com o código, como [IntelliJ](https://www.jetbrains.com/pt-br/idea/).
 <br>
+
 <h3>
 🛠 Tecnologias
 </h3>
@@ -27,6 +27,7 @@ As seguintes tecnologias foram utilizadas na construção do projeto:
 - [IntelliJ](https://www.jetbrains.com/pt-br/idea/)
 - [Git](https://git-scm.com)
 <br>
+
 <h3>
 Como executar o Projeto
 </h3>
