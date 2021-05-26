@@ -4,31 +4,32 @@
 </h2>
 <p align="center">🚀 Uma reinterpretação do game Mundo de Wumpus.</p>
 <br>
-<h4>
-Objetivo
-</h4>
+<h3>
+Objetivos
+</h3>
 O objetivo desse projeto foi praticar os conhecimentos adquiridos em Java até o presente momento.
 O projeto em questão é referente a uma entrega de trabalho acadêmico da faculdade, no ano de 2020. O mesmo foi desenvolvido às pressas na época por conta de um prazo curto para entrega, porém refatorei o mesmo para uma melhor estrutura de lógica e código em 2021.
-<h4>
+<br>
+<h3>
 Pré-requisitos
-</h4>
+</h3>
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [JDK 11](https://www.oracle.com/br/java/technologies/javase-jdk11-downloads.html). 
 Além disto é bom ter uma IDE para trabalhar com o código, como [IntelliJ](https://www.jetbrains.com/pt-br/idea/).
-
-<h4>
+<br>
+<h3>
 🛠 Tecnologias
-</h4>
+</h3>
 
 As seguintes tecnologias foram utilizadas na construção do projeto:
 - [Java](https://www.java.com/pt-BR/)
 - [IntelliJ](https://www.jetbrains.com/pt-br/idea/)
 - [Git](https://git-scm.com)
-
-<h4>
+<br>
+<h3>
 Como executar o Projeto
-</h4>
+</h3>
 
 <h4>
 🎲 Clonando do Git para a sua máquina
