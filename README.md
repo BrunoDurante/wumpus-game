@@ -1,23 +1,25 @@
 <h1 align="center">Wumpus World Game</h1>
-<h3 align="center">
+<h2 align="center">
     <a href="https://www.java.com/pt-BR/">🔗 Java</a>
-</h3>
+</h2>
 <p align="center">🚀 Uma reinterpretação do game Mundo de Wumpus.</p>
 <br>
-<h5>Objetivo </h5>
+<h4>
+Objetivo
+</h4>
 O objetivo desse projeto foi praticar os conhecimentos adquiridos em Java até o presente momento.
 O projeto em questão é referente a uma entrega de trabalho acadêmico da faculdade, no ano de 2020. O mesmo foi desenvolvido às pressas na época por conta de um prazo curto para entrega, porém refatorei o mesmo para uma melhor estrutura de lógica e código em 2021.
-<h5>
+<h4>
 Pré-requisitos
-</h5>
+</h4>
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [JDK 11](https://www.oracle.com/br/java/technologies/javase-jdk11-downloads.html). 
 Além disto é bom ter uma IDE para trabalhar com o código, como [IntelliJ](https://www.jetbrains.com/pt-br/idea/).
 
-<h5>
+<h4>
 🛠 Tecnologias
-</h5>
+</h4>
 
 As seguintes tecnologias foram utilizadas na construção do projeto:
 - [Java](https://www.java.com/pt-BR/)
@@ -28,15 +30,15 @@ As seguintes tecnologias foram utilizadas na construção do projeto:
 Como executar o Projeto
 </h4>
 
-<h5>
+<h4>
 🎲 Clonando do Git para a sua máquina
-</h5>
+</h4>
 ```bash
 $ git clone https://github.com/BrunoDurante/wumpus-game.git
 ```
-<h5>
+<h4>
 🎲 Na IDE
-</h5>
+</h4>
 - Importe o projeto.
 - Execute o método main, localizado na classe Game.
 
