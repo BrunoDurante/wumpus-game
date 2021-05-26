@@ -19,14 +19,13 @@ public class Checking {
         Gold gold = (Gold) mapEntities.get("gold");
 
         if (!wumpus.isAlive()) {
-            System.out.println("YOU WIN !!! You killed Wumpus!!");
+            System.out.println("\nYOU WIN !!! You killed Wumpus!!");
             return true;
         }
         if (foundGold(hero, gold)) {
-            System.out.println("YOU WIN !!! You found the gold!!");
+            System.out.println("\nYOU WIN !!! You found the gold!!");
             return true;
         }
-
         return false;
     }
 
@@ -40,11 +39,12 @@ public class Checking {
         Wumpus wumpus = (Wumpus) mapEntities.get("wumpus");
 
         if (fallPit(hero, pit)) {
-            System.out.println("So bad, you lost! You fell in the pit...");
+            System.out.println("\nSo bad, you lost! You fell in the pit...");
             return true;
         }
         if (foundWumpus(hero, wumpus)) {
-            System.out.println("So bad, you lost! Wumpus killed you...");
+            System.out.println("\nSo bad, you lost! Wumpus killed you...");
+            return true;
         }
         return false;
     }
@@ -77,11 +77,11 @@ public class Checking {
         int line = hero.getLinePosition();
         int column = hero.getColumnPosition();
 
-        if (pit.getBreeze().getPositionList().stream().anyMatch(position -> position.getLine() == line && position.getColumn() == column))
+        if (pit.getSensor().getPositionList().stream().anyMatch(position -> position.getLine() == line && position.getColumn() == column))
             Breeze.getResponse();
-        if (gold.getLight().getPositionList().stream().anyMatch(position -> position.getLine() == line && position.getColumn() == column))
+        if (gold.getSensor().getPositionList().stream().anyMatch(position -> position.getLine() == line && position.getColumn() == column))
             Light.getResponse();
-        if (wumpus.getStinck().getPositionList().stream().anyMatch(position -> position.getLine() == line && position.getColumn() == column))
+        if (wumpus.getSensor().getPositionList().stream().anyMatch(position -> position.getLine() == line && position.getColumn() == column))
             Stinck.getResponse();
     }
 

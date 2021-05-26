@@ -7,6 +7,7 @@ import static game.entities.Directions.EAST;
 import game.entities.Codename;
 import game.entities.entity.Entity;
 import game.entities.entity.Wumpus;
+import game.entities.sensor.Sensor;
 
 import java.util.Random;
 
@@ -74,7 +75,7 @@ public class Hero extends Entity {
      */
     public void shoot(Wumpus wumpus) {
         if (arrow) {
-            command.shoot(wumpus, direction, line, column);
+            command.shoot(wumpus, direction, getLinePosition(), getColumnPosition());
             arrow = false;
         }
     }
@@ -98,7 +99,7 @@ public class Hero extends Entity {
     /**
      * @return Direção do herói, tipada no Enum {@link Directions}.
      */
-    public Directions getDirection() {
+    public Directions getDirection()   {
         return direction;
     }
 
@@ -115,7 +116,7 @@ public class Hero extends Entity {
      */
     public String getPositionFormatted() {
         String columnStr = "";
-        switch (column) {
+        switch (getColumnPosition()) {
             case 0: {
                 columnStr = "A";
                 break;
@@ -133,7 +134,7 @@ public class Hero extends Entity {
                 break;
             }
         }
-        return line + "," + columnStr;
+        return getLinePosition() + "," + columnStr;
     }
 
     private void initializeVisitedPlace() {
@@ -163,12 +164,13 @@ public class Hero extends Entity {
     }
 
     @Override
-    protected void putEntityBoard(Random random, Entity... entities) {
-
+    protected Sensor getSensor() {
+        return null;
     }
 
     @Override
-    protected void putSensor(int linePositionEntity, int columnPositionEntity) {
+    protected void putEntityBoard(Random random, Entity... entities) {}
 
-    }
+    @Override
+    protected void putSensor(int linePositionEntity, int columnPositionEntity) {}
 }

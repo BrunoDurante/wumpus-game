@@ -5,15 +5,24 @@ import game.entities.Position;
 import game.entities.sensor.Breeze;
 import game.entities.sensor.Sensor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Pit extends Entity {
 
     private Sensor breeze;
+    private List<Position> positionList;
 
     public Pit() {
         super(Codename.P);
         breeze = new Breeze();
+        positionList = new ArrayList<>();
+    }
+
+    @Override
+    public Sensor getSensor() {
+        return breeze;
     }
 
     @Override
@@ -33,6 +42,7 @@ public class Pit extends Entity {
                     || gold.canBeBlocked(x, y, wumpus, this));
             setPosition(x, y);
             putSensor(x, y);
+            addPosition();
             count++;
 
         }
@@ -50,11 +60,16 @@ public class Pit extends Entity {
     }
 
     @Override
-    public void putSensor(int linePositionEntity, int columnPositionEntity) {
-        breeze.setSensorAroundElement(linePositionEntity, columnPositionEntity);
+    public void putSensor(int entityLine, int entityColumn) {
+        breeze.setSensorAroundElement(new Position(entityLine, entityColumn));
     }
 
-    public Sensor getBreeze(){
-        return breeze;
+    public void addPosition() {
+        positionList.add(new Position(getLinePosition(), getColumnPosition()));
     }
+
+    public List<Position> getPositionList() {
+        return this.positionList;
+    }
+
 }

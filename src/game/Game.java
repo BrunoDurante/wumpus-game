@@ -19,19 +19,17 @@ public class Game {
     private static Config config;
     private static Hero hero;
 
-    // colocar um thread sleep nas mensagens do game para o jogador, simulando games de rpg.
-
     public static void main(String[] args) {
 
         startGame();
-
         while (gaming) {
             round(hero);
-
             if (endGame()) {
                 gaming = false;
                 config.end(hero.getName());
                 sc.close();
+            } else {
+                config.showSensor(mapEntities);
             }
         }
     }
@@ -45,13 +43,13 @@ public class Game {
         config.welcome(hero.getName());
         mapEntities = config.prepareGame();
         mapEntities.put("hero", hero);
-//        pausarConsole(3);
+        pausarConsole(2);
         config.showBoard(hero);
-//        pausarConsole(5);
+        pausarConsole(5);
         config.showRules();
-//        pausarConsole(10);
+        pausarConsole(10);
         config.showStatus(hero);
-//        pausarConsole(5);
+        pausarConsole(5);
     }
 
     private static void pausarConsole(int seconds) {
@@ -99,8 +97,8 @@ public class Game {
             }
         }
         config.showBoard(hero);
-        config.showStatus(hero);
-        config.showSensor(mapEntities);
+
+        pausarConsole(1);
     }
 
     //verificar fim do jogo

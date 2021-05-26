@@ -1,14 +1,6 @@
 package game.entities;
 
 import game.entities.entity.hero.Hero;
-import game.entities.sensor.Breeze;
-import game.entities.sensor.Light;
-import game.entities.sensor.Sensor;
-import game.entities.sensor.Stinck;
-
-import java.util.ArrayList;
-import java.util.IllegalFormatCodePointException;
-import java.util.List;
 
 public class Cave {
 

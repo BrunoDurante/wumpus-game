@@ -20,10 +20,11 @@ public class Config {
                 "~ You win if you find the gold or hit the Wumpus with an arrow.\n" +
                 "~ You lose if you fall into the pit or if you are in the same position as Wumpus.");
         System.out.println("Commands\n" +
-                "~ To walk through the cave type \"walk\".\n"
-                + "~ To turn right, type \"turnR\".\n"
-                + "~ To turn left, type \"turnL\". \n"
-                + "~ To shoot type \"shoot\".\n");
+                "~ To walk through the cave enter \"walk\".\n"
+                + "~ To turn right, enter \"turnR\".\n"
+                + "~ To turn left, enter \"turnL\". \n"
+                + "~ To shoot type \"shoot\".\n"
+                + "~ To view your status, enter \"status\".");
     }
 
     public String inputNameHero() {
@@ -60,7 +61,7 @@ public class Config {
     }
 
     public void showStatus(Hero hero) {
-        System.out.println("> Game status");
+        System.out.println("\n> Game status");
         System.out.println("Your position on the board: [" + hero.getPositionFormatted() + "]");
         System.out.println("Your current direction: " + hero.getDirection().name());
         System.out.println("Has arrow? " + hero.hasArrow());
@@ -92,10 +93,10 @@ public class Config {
     }
 
     public void end(String name) {
-        System.out.println("Thanks for trying it out, " + name + "! To play again, click 'run' in your IDE.");
+        System.out.println("\nThanks for trying it out, " + name + "! To play again, click 'run' in your IDE.");
     }
 
-    public void showSensor(Map mapEntities) {
+    public void showSensor(Map<String, Entity> mapEntities) {
         Checking.hasSensor(mapEntities);
     }
 }

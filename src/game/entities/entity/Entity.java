@@ -10,28 +10,20 @@ import java.util.List;
 import java.util.Random;
 
 public abstract class Entity {
-    protected int line;
-    protected int column;
+    protected Position position;
     protected Codename codename;
-    protected List<Position> positionList;
 
     public Entity(Codename codename) {
         this.codename = codename;
-        positionList = new ArrayList<>();
+        position = new Position();
     }
 
-    /**
-     * @return coluna no qual a entidade está.
-     */
-    public int getColumnPosition() {
-        return column;
-    }
-
-    /**
-     * @return linha no qual a entidade está.
-     */
     public int getLinePosition() {
-        return line;
+        return position.getLine();
+    }
+
+    public int getColumnPosition() {
+        return position.getColumn();
     }
 
     /**
@@ -48,9 +40,8 @@ public abstract class Entity {
      * @param column coluna no qual será inserido
      */
     public void setPosition(int line, int column) {
-        this.line = line;
-        this.column = column;
-        addPosition();
+        position.setLine(line);
+        position.setColumn(column);
         Cave.setElementOnBoard(line, column, codename.toString());
     }
 
@@ -62,16 +53,10 @@ public abstract class Entity {
      * @return true ou false
      */
     public boolean exists(int line, int column) {
-        return this.line == line && this.column == column;
+        return position.getLine() == line && position.getColumn() == column;
     }
 
-    public void addPosition() {
-        this.positionList.add(new Position(line, column));
-    }
-
-    public List<Position> getPositionList() {
-        return this.positionList;
-    }
+    protected abstract Sensor getSensor();
 
     /**
      * Insere a entidade no tabuleiro.

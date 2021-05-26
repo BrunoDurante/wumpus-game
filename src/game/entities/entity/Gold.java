@@ -2,6 +2,7 @@ package game.entities.entity;
 
 import game.entities.Cave;
 import game.entities.Codename;
+import game.entities.Position;
 import game.entities.sensor.Light;
 import game.entities.sensor.Sensor;
 
@@ -11,9 +12,15 @@ public class Gold extends Entity {
 
     private Sensor light;
 
+
     public Gold() {
         super(Codename.G);
         light = new Light();
+    }
+
+    @Override
+    public Sensor getSensor() {
+        return light;
     }
 
     @Override
@@ -30,8 +37,8 @@ public class Gold extends Entity {
     }
 
     @Override
-    public void putSensor(int linePositionEntity, int columnPositionEntity) {
-        light.setSensorAroundElement(linePositionEntity, columnPositionEntity);
+    public void putSensor(int entityLine, int entityColumn) {
+        light.setSensorAroundElement(new Position(entityLine, entityColumn));
     }
 
     /**
@@ -73,6 +80,9 @@ public class Gold extends Entity {
      * @return true se a alguma célula ao redor de Gold estiver disponível, false se não.
      */
     private boolean checkCellsAround(int destinationLine, int destinationColumn, Wumpus wumpus, Pit pit) {
+        int line = getLinePosition();
+        int column = getColumnPosition();
+
         //Above gold
         if (Cave.checkLimits(line - 1)) {
             if (isEmpty(line - 1, destinationColumn, wumpus, pit)) {
@@ -116,7 +126,4 @@ public class Gold extends Entity {
         return !(wumpus.exists(line, column) || pit.exists(line, column));
     }
 
-    public Sensor getLight() {
-        return light;
-    }
 }

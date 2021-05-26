@@ -1,6 +1,7 @@
 package game.entities.entity;
 
 import game.entities.Codename;
+import game.entities.Position;
 import game.entities.sensor.Stinck;
 import game.entities.sensor.Sensor;
 
@@ -26,6 +27,11 @@ public class Wumpus extends Entity {
     }
 
     @Override
+    public Sensor getSensor() {
+        return stinck;
+    }
+
+    @Override
     public void putEntityBoard(Random random, Entity... entities) {
         int x;
         int y;
@@ -39,12 +45,8 @@ public class Wumpus extends Entity {
     }
 
     @Override
-    public void putSensor(int linePositionEntity, int columnPositionEntity) {
-        stinck.setSensorAroundElement(linePositionEntity, columnPositionEntity);
-    }
-
-    public Sensor getStinck() {
-        return stinck;
+    public void putSensor(int entityLine, int entityColumn) {
+        stinck.setSensorAroundElement(new Position(entityLine, entityColumn));
     }
 
 }
