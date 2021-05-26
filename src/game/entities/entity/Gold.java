@@ -2,25 +2,19 @@ package game.entities.entity;
 
 import game.entities.Cave;
 import game.entities.Codename;
-import game.entities.Position;
-import game.entities.sensor.Light;
 import game.entities.sensor.Sensor;
 
 import java.util.Random;
 
 public class Gold extends Entity {
 
-    private Sensor light;
-
-
     public Gold() {
         super(Codename.G);
-        light = new Light();
     }
 
     @Override
     public Sensor getSensor() {
-        return light;
+        return null;
     }
 
     @Override
@@ -32,13 +26,11 @@ public class Gold extends Entity {
             y = random.nextInt(4);
         } while (x >= 2 && y < 2 || (x < 2 && y >= 2));
         setPosition(x, y);
-        putSensor(x, y);
 
     }
 
     @Override
-    public void putSensor(int entityLine, int entityColumn) {
-        light.setSensorAroundElement(new Position(entityLine, entityColumn));
+    protected void putSensor(int linePositionEntity, int columnPositionEntity) {
     }
 
     /**

@@ -46,7 +46,7 @@ public class Wumpus extends Entity {
 
     @Override
     public void putSensor(int entityLine, int entityColumn) {
-        stinck.setSensorAroundElement(new Position(entityLine, entityColumn));
+        stinck.setSensorAroundElement(entityLine, entityColumn);
     }
 
 }

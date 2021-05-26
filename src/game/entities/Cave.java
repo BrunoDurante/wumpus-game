@@ -50,19 +50,19 @@ public class Cave {
             for (int j = 0; j < 4; j++) {
 
                 if (hero.wasVisited(i, j)) {
-                    int length = String.valueOf(cave[i][j]).length();
-                    if (length == 0) {
-                        caveBoard.append("    " + "|");
-                    } else if (length == 1) {
-                        caveBoard.append("   ").append(cave[i][j]).append("|");
-                    } else if (length == 2) {
-                        caveBoard.append("  ").append(cave[i][j]).append("|");
-                    } else if (length == 3) {
-                        caveBoard.append(" ").append(cave[i][j]).append("|");
-                    } else {
-                        caveBoard.append(cave[i][j]).append("|");
-                    }
+                int length = String.valueOf(cave[i][j]).length();
+                if (length == 0) {
+                    caveBoard.append("    " + "|");
+                } else if (length == 1) {
+                    caveBoard.append("   ").append(cave[i][j]).append("|");
+                } else if (length == 2) {
+                    caveBoard.append("  ").append(cave[i][j]).append("|");
+                } else if (length == 3) {
+                    caveBoard.append(" ").append(cave[i][j]).append("|");
                 } else {
+                    caveBoard.append(cave[i][j]).append("|");
+                }
+            } else {
                     caveBoard.append("    ").append("|");
                 }
 

@@ -39,10 +39,10 @@ public class Pit extends Entity {
                 x = random.nextInt(4);
                 y = random.nextInt(4);
             } while (x >= 2 && y < 2 || gold.exists(x, y) || wumpus.exists(x, y) || hasPit(x, y)
-                    || gold.canBeBlocked(x, y, wumpus, this));
+                    || gold.canBeBlocked(x, y, wumpus, this) || pitAround(x, y));
             setPosition(x, y);
             putSensor(x, y);
-            addPosition();
+            addPositionList();
             count++;
 
         }
@@ -59,12 +59,24 @@ public class Pit extends Entity {
         return positionList.stream().anyMatch(position -> position.getLine() == line && position.getColumn() == column);
     }
 
-    @Override
-    public void putSensor(int entityLine, int entityColumn) {
-        breeze.setSensorAroundElement(new Position(entityLine, entityColumn));
+    private boolean pitAround(int line, int column) {
+        if (positionList.stream().anyMatch(position -> position.getLine() == (line + 1) && position.getColumn() == column))
+            return true;
+        if (positionList.stream().anyMatch(position -> position.getLine() == (line - 1) && position.getColumn() == column))
+            return true;
+        if (positionList.stream().anyMatch(position -> position.getLine() == line && position.getColumn() == (column + 1)))
+            return true;
+        if (positionList.stream().anyMatch(position -> position.getLine() == line && position.getColumn() == (column - 1)))
+            return true;
+        return false;
     }
 
-    public void addPosition() {
+    @Override
+    public void putSensor(int entityLine, int entityColumn) {
+            breeze.setSensorAroundElement(entityLine, entityColumn);
+    }
+
+    public void addPositionList() {
         positionList.add(new Position(getLinePosition(), getColumnPosition()));
     }
 

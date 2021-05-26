@@ -17,13 +17,13 @@ public class Config {
 
     public void showRules() {
         System.out.println("Game Conditions\n" +
-                "~ You win if you find the gold or hit the Wumpus with an arrow.\n" +
-                "~ You lose if you fall into the pit or if you are in the same position as Wumpus.");
-        System.out.println("Commands\n" +
+                "~ You win if you find the gold or hit the Wumpus with an \narrow.\n" +
+                "~ You lose if you fall into the pit or if you are in the \nsame position as Wumpus.");
+        System.out.println("\nCommands\n" +
                 "~ To walk through the cave enter \"walk\".\n"
                 + "~ To turn right, enter \"turnR\".\n"
                 + "~ To turn left, enter \"turnL\". \n"
-                + "~ To shoot type \"shoot\".\n"
+                + "~ To shoot enter \"shoot\".\n"
                 + "~ To view your status, enter \"status\".");
     }
 
@@ -43,12 +43,12 @@ public class Config {
         System.out.println("                    >>> Rules <<<                         ");
         System.out.println("It's simple... walk through the cave until you find the \ngold or hit the wumpus with a sharp arrow.");
         System.out.println("You can walk, turn right, turn left and shoot.");
-        System.out.println("Remember, you are entitled to only one arrow. Use it wisely.");
+        System.out.println("Remember, you are entitled to only one arrow. Use it \nwisely.");
         System.out.println("Enjoy the game!\n");
 
         System.out.println("             >>> Development informations <<<             ");
         System.out.println("This game was developed by Bruno Durante, using the Java \nprogramming language, version 11.");
-        System.out.println("Send a message if you find any bugs, if you have suggestions \nfor improvements. I am extremely receptive to feedbacks.\n");
+        System.out.println("Send a message if you find any bugs, if you have \nsuggestions for improvements. I am extremely receptive to \nfeedbacks.\n");
 
         System.out.println("See more about the project:");
         System.out.println("https://github.com/BrunoDurante/wumpus-game");

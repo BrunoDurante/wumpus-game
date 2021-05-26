@@ -6,7 +6,6 @@ import game.entities.entity.Gold;
 import game.entities.entity.Pit;
 import game.entities.entity.Wumpus;
 import game.entities.sensor.Breeze;
-import game.entities.sensor.Light;
 import game.entities.sensor.Stinck;
 
 import java.util.Map;
@@ -79,8 +78,6 @@ public class Checking {
 
         if (pit.getSensor().getPositionList().stream().anyMatch(position -> position.getLine() == line && position.getColumn() == column))
             Breeze.getResponse();
-        if (gold.getSensor().getPositionList().stream().anyMatch(position -> position.getLine() == line && position.getColumn() == column))
-            Light.getResponse();
         if (wumpus.getSensor().getPositionList().stream().anyMatch(position -> position.getLine() == line && position.getColumn() == column))
             Stinck.getResponse();
     }

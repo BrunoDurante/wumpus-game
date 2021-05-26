@@ -47,7 +47,7 @@ public class Game {
         config.showBoard(hero);
         pausarConsole(5);
         config.showRules();
-        pausarConsole(10);
+        pausarConsole(5);
         config.showStatus(hero);
         pausarConsole(5);
     }
